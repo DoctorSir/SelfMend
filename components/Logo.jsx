@@ -1,11 +1,11 @@
 import React from 'react'
 import { Image } from 'react-native'
-import temp_logo from '../assets/temp_logo.jpg'
+import logo from '../assets/SelfMend.png'
 
 // import image from assets folder and define the size
 export default function Logo() {
     return (
-        <Image source={temp_logo}
+        <Image source={logo}
             style={{ width: 100, height: 100 }}
         />
     )

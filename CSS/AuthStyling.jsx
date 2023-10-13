@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     loginOpac: {
-        backgroundColor: "#000000",
+        backgroundColor: "#21080C",
         borderRadius: 5,
         marginTop: 10,
         marginBottom: 20,
@@ -12,7 +12,7 @@ export default StyleSheet.create({
         paddingBottom: 10
     },
     LoginText: {
-        color: "#FFFFFF"
+        color: "#FCF6EE"
     },
     additionalOptions: {
         margin: 10
