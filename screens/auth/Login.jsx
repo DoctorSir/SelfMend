@@ -15,7 +15,7 @@ export default function LoginScreen({ navigation }) {
         // add auth logic here
 
         // With no additional logic this simulates a successful login
-        navigation.navigate('Landing');
+        navigation.navigate('Journal');
     }
 
     return (

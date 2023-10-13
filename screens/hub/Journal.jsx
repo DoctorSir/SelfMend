@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native';
 import { Text, TextInput, Button } from 'react-native-paper';
 
-import styles from '../../CSS/JournalStyling'; // Import your styles
+import JournalStyles from '../../CSS/JournalStyling'; // Import your styles
 
 export default function JournalEntryPage() {
   const [journalEntry, setJournalEntry] = useState('');
@@ -19,10 +19,10 @@ export default function JournalEntryPage() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={JournalStyles.container}>
       <Text>Write your journal entry:</Text>
       <TextInput
-        style={styles.textInput}
+        style={JournalStyles.textInput}
         onChangeText={handleJournalEntryChange}
         value={journalEntry}
         multiline={true}
