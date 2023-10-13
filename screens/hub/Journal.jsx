@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { SafeAreaView, Text, TextInput, Button } from 'react-native';
 import styles from '../../CSS/JournalStyling'; // Import your styles
 
 export default function JournalEntryPage() {
@@ -17,7 +17,7 @@ export default function JournalEntryPage() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Write your journal entry:</Text>
       <TextInput
         style={styles.textInput}
@@ -29,6 +29,6 @@ export default function JournalEntryPage() {
         placeholderTextColor={'gray'}
       />
       <Button title="Save Entry" onPress={saveEntry} />
-    </View>
+    </SafeAreaView>
   );
 }
