@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, TextInput, Button } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { Text, TextInput, Button } from 'react-native-paper';
+
 import styles from '../../CSS/JournalStyling'; // Import your styles
 
 export default function JournalEntryPage() {

@@ -11,7 +11,7 @@ export default StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 10
     },
-    LoginText: {
+    actionButtonText: {
         color: "#FCF6EE"
     },
     additionalOptions: {

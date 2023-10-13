@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
-import { Text, TextInput, Button, StyleSheet } from 'react-native-paper';
+import { Text, TextInput } from 'react-native-paper';
 
 import Logo from '../../components/Logo';
 import Theme from '../../CSS/AppTheme';
@@ -13,6 +13,9 @@ export default function LoginScreen({ navigation }) {
 
     const handleLogin = () => {
         // add auth logic here
+
+        // With no additional logic this simulates a successful login
+        navigation.navigate('Landing');
     }
 
     return (
@@ -40,7 +43,7 @@ export default function LoginScreen({ navigation }) {
             />
 
             <TouchableOpacity onPress={(handleLogin)} style={Auth.loginOpac}>
-                <Text style={Auth.LoginText}>Login</Text>
+                <Text style={Auth.actionButtonText}>Login</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Forgot Password')} style={Auth.additionalOptions}>
