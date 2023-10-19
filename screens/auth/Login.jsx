@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
+import { auth } from '../../services/firebaseConfig';
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 
 import Logo from '../../components/Logo';
 import Theme from '../../CSS/AppTheme';
 import Auth from '../../CSS/AuthStyling';
 
 export default function LoginScreen({ navigation }) {
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleLogin = () => {
-        // add auth logic here
-
-        // With no additional logic this simulates a successful login
-        navigation.navigate('Journal');
+    const handleLogin = async () => {
+        try {
+            const response = await signInWithEmailAndPassword(auth, email, password)
+            console.log(response);
+            setError('')
+            navigation.navigate('Landing');
+        } catch (error) {
+            console.log(error);
+            setError('Sign In Failed! Check Email and Password');
+        }
     }
 
     return (
