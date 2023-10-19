@@ -7,7 +7,6 @@ import { StatusBar } from 'expo-status-bar';
 import LoginScreen from './screens/auth/Login';
 import CreateAccountScreen from './screens/auth/Signup'
 import ForgotPasswordScreen from './screens/auth/ForgotPassword';
-import ChangePasswordScreen from './screens/auth/ChangePassword';
 import JournalScreen from './screens/hub/Journal';
 import LandingPage from './screens/hub/Landing';
 
@@ -23,7 +22,6 @@ export default function App() {
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Create Account" component={CreateAccountScreen} />
                 <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
-                <Stack.Screen name="Change Password" component={ChangePasswordScreen} />
 
                 <Stack.Screen name="Landing" component={LandingPage} />
                 <Stack.Screen name="Journal" component={JournalScreen} />

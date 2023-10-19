@@ -26,8 +26,6 @@ export default function LoginScreen({ navigation }) {
         } catch (error) {
             console.log(error);
             setError('Sign In Failed! Check Email and Password');
-        } finally {
-            auth.currentUser.reload()
         }
     }
 
