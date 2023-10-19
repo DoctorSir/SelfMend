@@ -21,9 +21,13 @@ export default function LoginScreen({ navigation }) {
             console.log(response);
             setError('')
             navigation.navigate('Landing');
+            setEmail("");
+            setPassword("");
         } catch (error) {
             console.log(error);
             setError('Sign In Failed! Check Email and Password');
+        } finally {
+            auth.currentUser.reload()
         }
     }
 

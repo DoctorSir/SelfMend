@@ -16,7 +16,7 @@ export default function LandingPage({ navigation }) {
             navigation.navigate("Login")
         }).catch((error) => {
             console.log(error)
-        });
+        })
     }
 
 
