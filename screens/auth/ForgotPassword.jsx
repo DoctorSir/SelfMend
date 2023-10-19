@@ -27,7 +27,7 @@ export default function ForgotPasswordScreen({ navigation }) {
     return (
         <SafeAreaView style={Theme.container}>
             <Logo />
-            <Text style={Theme.title}>Password Reset</Text>
+            <Text style={Theme.title}>SelfMend Password Reset</Text>
             <TextInput
                 placeholder="Email"
                 placeholderTextColor={"#000000"}

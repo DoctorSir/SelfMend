@@ -83,6 +83,8 @@ export default function SignupScreen({ navigation }) {
 
             <Logo style={Auth.logo} />
 
+            <Text style={Theme.title}>SelfMend Sign Up</Text>
+
             <TextInput
                 placeholder="First Name"
                 placeholderTextColor={"#000000"}
@@ -130,7 +132,7 @@ export default function SignupScreen({ navigation }) {
             />
 
             <TouchableOpacity onPress={(handleSignup)} style={Auth.loginOpac}>
-                <Text style={Auth.actionButtonText}>Create Account</Text>
+                <Text style={Auth.actionButtonText}>Sign Up</Text>
             </TouchableOpacity>
 
             <Text style={Theme.errorText}>{error}</Text>

@@ -34,6 +34,8 @@ export default function LoginScreen({ navigation }) {
 
             <Logo style={Auth.logo} />
 
+            <Text style={Theme.title}>SelfMend Sign In</Text>
+
             <TextInput
                 style={Theme.userInput}
                 placeholder="Email"
@@ -54,7 +56,7 @@ export default function LoginScreen({ navigation }) {
             />
 
             <TouchableOpacity onPress={(handleLogin)} style={Auth.loginOpac}>
-                <Text style={Auth.actionButtonText}>Login</Text>
+                <Text style={Auth.actionButtonText}>Sign In</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Forgot Password')} style={Auth.additionalOptions}>
