@@ -57,8 +57,7 @@ export default function SignupScreen({ navigation }) {
     const handleSignup = async () => {
         if (firstName !== "" && lastName !== "" && email !== "" & password !== "" & confirmPassword !== "") {
             try {
-                // const user = auth.currentUser;
-
+                
                 await createUserWithEmailAndPassword(auth, email, password)
                 await updateProfile(auth.currentUser, { displayName: `${firstName} ${lastName}` }).catch(
                     (err) => console.log(err)
