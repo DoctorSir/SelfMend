@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { SafeAreaView, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, TextInput } from 'react-native-paper';
 import { signOut } from "firebase/auth";
 import { auth } from '../../services/firebaseConfig';
@@ -19,7 +20,6 @@ export default function LandingPage({ navigation }) {
         })
     }
 
-
     return (
         <SafeAreaView>
             <Logo />
@@ -31,6 +31,21 @@ export default function LandingPage({ navigation }) {
                 <Text style={Hub.actionButtonText}>Logout</Text>
 
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => (navigation.navigate("Settings"))} style={Hub.logoutOpac}>
+
+                <Text style={Hub.actionButtonText}>Settings</Text>
+
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => (navigation.navigate("Journal"))} style={Hub.logoutOpac}>
+
+                <Text style={Hub.actionButtonText}>Journal</Text>
+
+            </TouchableOpacity>
+
+
+
 
         </SafeAreaView>
 

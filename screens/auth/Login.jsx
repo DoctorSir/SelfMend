@@ -18,13 +18,13 @@ export default function LoginScreen({ navigation }) {
     const handleLogin = async () => {
         try {
             const response = await signInWithEmailAndPassword(auth, email, password)
-            console.log(response);
+            // console.log(response);
             setError('')
-            navigation.navigate('Landing');
             setEmail("");
             setPassword("");
+            navigation.navigate('Landing');
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             setError('Sign In Failed! Check Email and Password');
         }
     }

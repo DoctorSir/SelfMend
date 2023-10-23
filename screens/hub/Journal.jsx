@@ -21,7 +21,7 @@ export default function JournalEntryPage() {
     };
 
     return (
-        <SafeAreaView style={JournalStyles.container}>
+        <SafeAreaView style={Theme.container}>
             <Text>Write your journal entry:</Text>
             <TextInput
                 style={Hub.textInput}
