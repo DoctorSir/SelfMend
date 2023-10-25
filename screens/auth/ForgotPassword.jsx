@@ -34,6 +34,7 @@ export default function ForgotPasswordScreen({ navigation }) {
                 onChangeText={(text) => setEmail(text)}
                 value={email}
                 style={Theme.userInput}
+                activeUnderlineColor="#5194b8"
             />
 
             <TouchableOpacity onPress={(handlePasswordReset)} style={Auth.loginOpac}>

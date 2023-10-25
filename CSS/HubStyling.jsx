@@ -21,7 +21,7 @@ export default StyleSheet.create({
         padding: 10,
         textAlign: 'center',
     },
-    logoutOpac: {
+    buttonOpac: {
         backgroundColor: "#21080C",
         borderRadius: 5,
         marginTop: 10,

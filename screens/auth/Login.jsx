@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }) {
             setError('')
             setEmail("");
             setPassword("");
-            navigation.navigate('Landing');
+            navigation.navigate('Hub Navigator');
         } catch (error) {
             // console.log(error);
             setError('Sign In Failed! Check Email and Password');
@@ -43,6 +43,7 @@ export default function LoginScreen({ navigation }) {
                 onChangeText={(text) => setEmail(text)}
                 value={email}
                 mode='flat'
+                activeUnderlineColor="#5194b8"
             />
 
             <TextInput
@@ -53,6 +54,7 @@ export default function LoginScreen({ navigation }) {
                 onChangeText={(text) => setPassword(text)}
                 value={password}
                 mode='flat'
+                activeUnderlineColor="#5194b8"
             />
 
             <TouchableOpacity onPress={(handleLogin)} style={Auth.loginOpac}>

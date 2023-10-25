@@ -7,9 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import LoginScreen from './screens/auth/Login';
 import CreateAccountScreen from './screens/auth/Signup'
 import ForgotPasswordScreen from './screens/auth/ForgotPassword';
-import JournalScreen from './screens/hub/Journal';
-import LandingPage from './screens/hub/Landing';
-import SettingsPage from './screens/hub/Settings';
+import HubNavigator from './navigation/HubNavigator';
 
 
 // create new stack navigator to go between screens
@@ -24,9 +22,7 @@ export default function App() {
                 <Stack.Screen name="Create Account" component={CreateAccountScreen} />
                 <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
 
-                <Stack.Screen name="Landing" component={LandingPage} />
-                <Stack.Screen name="Journal" component={JournalScreen} />
-                <Stack.Screen name="Settings" component={SettingsPage} />
+                <Stack.Screen name="Hub Navigator" component={HubNavigator} />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -92,6 +92,7 @@ export default function SignupScreen({ navigation }) {
                 onBlur={validateFName}
                 value={firstName}
                 style={Theme.userInput}
+                activeUnderlineColor="#5194b8"
             />
 
             <TextInput
@@ -101,6 +102,7 @@ export default function SignupScreen({ navigation }) {
                 onBlur={validateLName}
                 value={lastName}
                 style={Theme.userInput}
+                activeUnderlineColor="#5194b8"
             />
 
             <TextInput
@@ -110,6 +112,7 @@ export default function SignupScreen({ navigation }) {
                 onBlur={validateEmail}
                 value={email}
                 style={Theme.userInput}
+                activeUnderlineColor="#5194b8"
             />
 
             <TextInput
@@ -119,6 +122,7 @@ export default function SignupScreen({ navigation }) {
                 value={password}
                 secureTextEntry
                 style={Theme.userInput}
+                activeUnderlineColor="#5194b8"
             />
 
             <TextInput
@@ -129,6 +133,7 @@ export default function SignupScreen({ navigation }) {
                 onBlur={validatePassword}
                 secureTextEntry
                 style={Theme.userInput}
+                activeUnderlineColor="#5194b8"
             />
 
             <TouchableOpacity onPress={(handleSignup)} style={Auth.loginOpac}>
