@@ -9,7 +9,7 @@
         "splash": {
             "image": "./assets/SelfMend.png",
             "resizeMode": "contain",
-            "backgroundColor": "#000000"
+            "backgroundColor": "#FFFFFF"
         },
         "assetBundlePatterns": [
             "**/*"
@@ -20,7 +20,7 @@
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/SelfMend.png",
-                "backgroundColor": "#000000"
+                "backgroundColor": "#FFFFFF"
             }
         },
         "web": {

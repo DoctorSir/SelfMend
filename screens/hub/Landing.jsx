@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { auth } from '../../services/firebaseConfig';
 
 import Logo from '../../components/Logo';
-import Theme from '../../CSS/AppTheme';
+// import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling';
 
 export default function LandingPage({ navigation }) {
@@ -21,31 +21,16 @@ export default function LandingPage({ navigation }) {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={Hub.container}>
             <Logo />
 
             <Text>{`Welcome ${auth.currentUser.displayName}!`}</Text>
 
-            <TouchableOpacity onPress={(handleLogout)} style={Hub.logoutOpac}>
+            <TouchableOpacity onPress={(handleLogout)} style={Hub.buttonOpac}>
 
                 <Text style={Hub.actionButtonText}>Logout</Text>
 
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => (navigation.navigate("Settings"))} style={Hub.logoutOpac}>
-
-                <Text style={Hub.actionButtonText}>Settings</Text>
-
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => (navigation.navigate("Journal"))} style={Hub.logoutOpac}>
-
-                <Text style={Hub.actionButtonText}>Journal</Text>
-
-            </TouchableOpacity>
-
-
-
 
         </SafeAreaView>
 

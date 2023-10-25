@@ -10,6 +10,7 @@ import {
   Switch,
 } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
+import { auth } from '../../services/firebaseConfig';
 
 const SECTIONS = [
   {
@@ -72,28 +73,16 @@ export default function Example() {
         </View>
 
         <View style={styles.profile}>
-          <Image
-            alt=""
-            source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBlU-8h0xB18lq4LC9YdKpQ3SHOngq4FqQBg&usqp=CAU",
-            }}
-            style={styles.profileAvatar}
-          />
 
-          <Text style={styles.profileName}>Hacker Man</Text>
+          <Text style={styles.profileName}>{auth.currentUser.displayName}</Text>
 
-          <Text style={styles.profileEmail}>hackermaster@protonmail.com</Text>
+          <Text style={styles.profileEmail}>{auth.currentUser.email}</Text>
 
           <TouchableOpacity
             onPress={() => {
               // handle onPress
             }}
           >
-            <View style={styles.profileAction}>
-              <Text style={styles.profileActionText}>Edit Profile</Text>
-
-              <FeatherIcon color="#fff" name="edit" size={16} />
-            </View>
           </TouchableOpacity>
         </View>
 

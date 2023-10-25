@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/stack": "^6.3.18",
     "expo": "~49.0.13",
@@ -17,8 +18,12 @@
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-paper": "^5.10.6",
+<<<<<<< HEAD
     "react-native-picker": "^4.3.7",
     "react-select": "^5.7.7"
+=======
+    "react-native-vector-icons": "^10.0.0"
+>>>>>>> d29ee2d6b65fc95d376ddaa5516723a497df969b
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
