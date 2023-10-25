@@ -8,10 +8,10 @@ export default StyleSheet.create({
         backgroundColor: '#FCF6EE'
     },
     title: {
-        margin: 15,
+        fontSize: 48,
         color: '#21080C',
         fontWeight: 'bold',
-        fontSize: 20
+        margin: 24,
     },
     userInput: {
         width: '75%',

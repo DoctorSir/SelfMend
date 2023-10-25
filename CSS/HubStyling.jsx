@@ -15,23 +15,32 @@ export default StyleSheet.create({
         color: 'red',
         padding: 10,
     },
-    button: {
-        backgroundColor: 'blue',
-        color: 'white',
+    journalInput: {
+        width: '75%',
+        height: 400,
+        backgroundColor: '#f6e3cb',
+        margin: 16,
         padding: 10,
-        textAlign: 'center',
+        borderRadius: 15,
     },
-    logoutOpac: {
-        backgroundColor: "#21080C",
+    titleText: {
+        fontSize: 48,
+        color: '#21080C',
+        fontWeight: 'bold',
+        margin: 24,
+    },
+    button: {
+        backgroundColor: '#21080C',
         borderRadius: 5,
         marginTop: 10,
         marginBottom: 20,
         paddingLeft: 30,
         paddingRight: 30,
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
+        textAlign: 'center',
     },
     actionButtonText: {
-        color: "#FCF6EE"
+        color: "#f6e3cb"
     },
 });
