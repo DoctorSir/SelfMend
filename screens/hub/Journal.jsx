@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView, TouchableOpacity } from 'react-native';
 import Picker from 'react-native-picker';
-import { Text, TextInput, Button } from 'react-native-paper';
-import Select from 'react-select';
+import { Text, TextInput } from 'react-native-paper';
 
 import Logo from '../../components/Logo';
 import Theme from '../../CSS/AppTheme';
@@ -102,20 +101,34 @@ export default function JournalEntryPage() {
             <Picker
                 selectedValue={selectedCategory}
                 onValueChange={handleCategoryChange}
-            />
+            >
+                {categories.map((category) => (
+                <Picker.Item
+                    key={category.value}
+                    label={category.label}
+                    value={category.value}
+                />
+                ))}
+            </Picker>
 
-            <Text>Select a Subcategory:</Text>
-            <Picker
-                selectedValue={selectedSubcategory}
-                onValueChange={handleSubcategoryChange}
-            />
+            {selectedCategory && (
+                <>
+                <Text>Select a Subcategory:</Text>
+                <Picker
+                    selectedValue={selectedSubcategory}
+                    onValueChange={(subcategory) => setSelectedSubcategory(subcategory)}
+                >
+                    {subcategories[selectedCategory].map((subcategory) => (
+                    <Picker.Item
+                        key={subcategory.value}
+                        label={subcategory.label}
+                        value={subcategory.value}
+                    />
+                    ))}
+                </Picker>
+                </>
+            )}
 
-            <Text>Select an Item:</Text>
-            <Picker
-                selectedValue={selectedItem}
-                onValueChange={(item) => setSelectedItem(item)}
-            />
-            
         </SafeAreaView>
     );
 }

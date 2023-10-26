@@ -23,19 +23,14 @@ export default StyleSheet.create({
         padding: 10,
         borderRadius: 15,
     },
-<<<<<<< HEAD
     titleText: {
         fontSize: 48,
         color: '#21080C',
         fontWeight: 'bold',
         margin: 24,
     },
-    button: {
-        backgroundColor: '#21080C',
-=======
     buttonOpac: {
         backgroundColor: "#21080C",
->>>>>>> d29ee2d6b65fc95d376ddaa5516723a497df969b
         borderRadius: 5,
         marginTop: 10,
         marginBottom: 20,
