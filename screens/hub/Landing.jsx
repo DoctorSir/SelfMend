@@ -10,27 +10,13 @@ import Logo from '../../components/Logo';
 // import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling';
 
-export default function LandingPage({ navigation }) {
-
-    const handleLogout = () => {
-        signOut(auth).then(() => {
-            navigation.navigate("Login")
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
+export default function LandingPage() {
 
     return (
         <SafeAreaView style={Hub.container}>
             <Logo />
 
             <Text>{`Welcome ${auth.currentUser.displayName}!`}</Text>
-
-            <TouchableOpacity onPress={(handleLogout)} style={Hub.buttonOpac}>
-
-                <Text style={Hub.actionButtonText}>Logout</Text>
-
-            </TouchableOpacity>
 
         </SafeAreaView>
 

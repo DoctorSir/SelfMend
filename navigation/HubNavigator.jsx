@@ -15,7 +15,7 @@ const Tab = createBottomTabNavigator();
 
 export default function HubNavigator() {
     return (
-        <Tab.Navigator initialRouteName="Home">
+        <Tab.Navigator initialRouteName="Home" >
             <Tab.Screen
                 name="Home"
                 component={LandingScreen}

@@ -24,6 +24,14 @@ export default function ForgotPasswordScreen({ navigation }) {
             });
     }
 
+    const validateEmail = () => {
+        const emailFormat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (!emailFormat.test(email)) {
+            setError("Invalid Email Format");
+            setEmail('');
+        } else setError('');
+    }
+
     return (
         <SafeAreaView style={Theme.container}>
             <Logo />
@@ -33,6 +41,7 @@ export default function ForgotPasswordScreen({ navigation }) {
                 placeholderTextColor={"#000000"}
                 onChangeText={(text) => setEmail(text)}
                 value={email}
+                onBlur={validateEmail}
                 style={Theme.userInput}
                 activeUnderlineColor="#5194b8"
             />

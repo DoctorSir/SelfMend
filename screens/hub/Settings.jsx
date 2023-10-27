@@ -1,264 +1,84 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Switch,
-} from "react-native";
-import FeatherIcon from "react-native-vector-icons/Feather";
+import React from "react";
+import { SafeAreaView, View, Text, TouchableOpacity, Alert } from "react-native";
+import { deleteUser, signOut } from "firebase/auth";
 import { auth } from '../../services/firebaseConfig';
 
-const SECTIONS = [
-  {
-    header: "Preferences",
-    items: [
-      {
-        id: "changeEmail",
-        icon: "mail",
-        label: "Change Email",
-        type: "select",
-      },
-      {
-        id: "changePW",
-        icon: "lock",
-        label: "Change Password",
-        type: "select",
-      },
-      {
-        id: "deleteAcc",
-        icon: "trash",
-        label: "Delete Account",
-        type: "select",
-      },
-    ],
-  },
-  {
-    header: "Help",
-    items: [
-      { id: "bug", icon: "flag", label: "Report Bug", type: "link" },
-      {
-        id: "notification",
-        icon: "bell",
-        label: "Notifications",
-        type: "toggle",
-      },
-    ],
-  },
-  {
-    header: "Content",
-    items: [
-      { id: "save", icon: "save", label: "Saved", type: "link" },
-      { id: "download", icon: "download", label: "Downloads", type: "link" },
-    ],
-  },
-];
+import Settings from "../../CSS/SettingsStyling";
 
-export default function Example() {
-  const [form, setForm] = useState({
-    language: "English",
-    notification: true,
-  });
 
-  return (
-    <SafeAreaView style={{ backgroundColor: "#4974a5" }}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Settings</Text>
 
-          <Text style={styles.subtitle}>Welcome to the Settings Page.</Text>
-        </View>
+export default function SettingsScreen({ navigation }) {
 
-        <View style={styles.profile}>
+    const handleDeleteAccount = () => {
+        Alert.alert(
+            "Delete Account",
+            "Are you sure you want to delete your account?",
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel"
+                },
+                { text: "Delete", onPress: () => handleConfirmDelete() }
+            ]
+        );
+    };
 
-          <Text style={styles.profileName}>{auth.currentUser.displayName}</Text>
+    const handleConfirmDelete = async () => {
+        const user = auth.currentUser;
 
-          <Text style={styles.profileEmail}>{auth.currentUser.email}</Text>
+        try {
+            await deleteUser(user);
+            await signOut(auth).then(() => {
+                navigation.navigate("Login")
+            });
+            Alert.alert("Account Successfully Deleted");
 
-          <TouchableOpacity
-            onPress={() => {
-              // handle onPress
-            }}
-          >
-          </TouchableOpacity>
-        </View>
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
-        {SECTIONS.map(({ header, items }) => (
-          <View style={styles.section} key={header}>
-            <View style={styles.sectionHeader}>
-              <Text style={styles.sectionHeaderText}>{header}</Text>
+    const handleLogout = () => {
+        signOut(auth).then(() => {
+            navigation.navigate("Login")
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
+    return (
+        <SafeAreaView style={Settings.container}>
+            <View>
+                <Text style={Settings.title}>Settings</Text>
             </View>
-            <View style={styles.sectionBody}>
-              {items.map(({ id, label, icon, type, value }, index) => {
-                return (
-                  <View
-                    key={id}
-                    style={[
-                      styles.rowWrapper,
-                      index === 0 && { borderTopWidth: 0 },
-                    ]}
-                  >
-                    <TouchableOpacity
-                      onPress={() => {
-                        // handle onPress
-                      }}
-                    >
-                      <View style={styles.row}>
-                        <FeatherIcon
-                          color="#616161"
-                          name={icon}
-                          style={styles.rowIcon}
-                          size={22}
-                        />
 
-                        <Text style={styles.rowLabel}>{label}</Text>
-
-                        <View style={styles.rowSpacer} />
-
-                        {type === "select" && (
-                          <Text style={styles.rowValue}>{form[id]}</Text>
-                        )}
-
-                        {type === "toggle" && (
-                          <Switch
-                            onChange={(val) => setForm({ ...form, [id]: val })}
-                            value={form[id]}
-                          />
-                        )}
-
-                        {(type === "select" || type === "link") && (
-                          <FeatherIcon
-                            color="#ababab"
-                            name="chevron-right"
-                            size={22}
-                          />
-                        )}
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                );
-              })}
+            <View style={Settings.profile}>
+                <Text style={Settings.profileName}>{auth.currentUser.displayName}</Text>
+                <Text style={Settings.profileEmail}>{auth.currentUser.email}</Text>
             </View>
-          </View>
-        ))}
-      </ScrollView>
-    </SafeAreaView>
-  );
+
+            <SafeAreaView style={Settings.title}>
+                <Text style={Settings.settingsSectionText}>Account Settings</Text>
+            </SafeAreaView>
+
+            <SafeAreaView style={Settings.settingsActions}>
+                <TouchableOpacity onPress={() => navigation.navigate('Update Email')} style={Settings.settingsOpac}>
+                    <Text style={Settings.settingsText}>Change Email</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Update Password')} style={Settings.settingsOpac}>
+                    <Text style={Settings.settingsText}>Change Password</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={(handleLogout)} style={Settings.settingsOpac}>
+                    <Text style={Settings.settingsText}>Sign Out</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={(handleDeleteAccount)} style={Settings.deleteOpac}>
+                    <Text style={Settings.settingsText}>Delete Account</Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        </SafeAreaView>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 24,
-  },
-  section: {
-    paddingTop: 12,
-  },
-  sectionHeader: {
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-  },
-  sectionHeaderText: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#a7a7a7",
-    textTransform: "uppercase",
-    letterSpacing: 1.2,
-  },
-  sectionBody: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: "#e3e3e3",
-  },
-  header: {
-    paddingLeft: 24,
-    paddingRight: 24,
-    marginBottom: 12,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "700",
-    color: "#1d1d1d",
-    marginBottom: 6,
-  },
-  subtitle: {
-    fontSize: 15,
-    fontWeight: "500",
-    color: "#929292",
-  },
-  profile: {
-    padding: 16,
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: "#e3e3e3",
-  },
-  profileAvatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 9999,
-  },
-  profileName: {
-    marginTop: 12,
-    fontSize: 20,
-    fontWeight: "600",
-    color: "#090909",
-  },
-  profileEmail: {
-    marginTop: 6,
-    fontSize: 16,
-    fontWeight: "400",
-    color: "#848484",
-  },
-  profileAction: {
-    marginTop: 12,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#007bff",
-    borderRadius: 12,
-  },
-  profileActionText: {
-    marginRight: 8,
-    fontSize: 15,
-    fontWeight: "600",
-    color: "#fff",
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    paddingRight: 24,
-    height: 50,
-  },
-  rowWrapper: {
-    paddingLeft: 24,
-    backgroundColor: "#fff",
-    borderTopWidth: 1,
-    borderColor: "#e3e3e3",
-  },
-  rowIcon: {
-    marginRight: 12,
-  },
-  rowLabel: {
-    fontSize: 17,
-    fontWeight: "500",
-    color: "#000",
-  },
-  rowValue: {
-    fontSize: 17,
-    color: "#616161",
-    marginRight: 4,
-  },
-  rowSpacer: {
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
-  },
-});

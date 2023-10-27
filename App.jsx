@@ -8,6 +8,8 @@ import LoginScreen from './screens/auth/Login';
 import CreateAccountScreen from './screens/auth/Signup'
 import ForgotPasswordScreen from './screens/auth/ForgotPassword';
 import HubNavigator from './navigation/HubNavigator';
+import UpdateEmailScreen from './screens/updateAccount/UpdateEmail';
+import UpdatePasswordScreen from './screens/updateAccount/UpdatePassword';
 
 
 // create new stack navigator to go between screens
@@ -23,6 +25,9 @@ export default function App() {
                 <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
 
                 <Stack.Screen name="Hub Navigator" component={HubNavigator} />
+
+                <Stack.Screen name="Update Password" component={UpdatePasswordScreen} />
+                <Stack.Screen name="Update Email" component={UpdateEmailScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
