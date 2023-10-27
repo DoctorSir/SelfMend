@@ -7,6 +7,12 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#FCF6EE'
     },
+    scroll: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 0,
+        backgroundColor: '#FCF6EE'
+    },
     title: {
         fontSize: 30,
         color: '#21080C',

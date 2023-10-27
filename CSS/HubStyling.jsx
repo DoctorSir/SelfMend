@@ -17,11 +17,12 @@ export default StyleSheet.create({
     },
     journalInput: {
         width: "75%",
-        height: 400,
+        height: 300,
         backgroundColor: "#f6e3cb",
         margin: 16,
-        padding: 10,
+        padding: 5,
         borderRadius: 15,
+        borderWidth: 0,
     },
     titleText: {
         fontSize: 48,
@@ -38,24 +39,30 @@ export default StyleSheet.create({
         paddingRight: 30,
         paddingTop: 10,
         paddingBottom: 10,
-        textAlign: "center",
+        textAlign: "center"
     },
     actionButtonText: {
-        color: "#21080F",
+        color: "#FCF6EE",
+    },
+    picker: {
+        borderWidth: 2,
+        borderRadius: 20,
+        width: "75%",
     },
     subText: {
         textDecorationLine: "underline",
-        color: "#EE4B2B",
+        color: "#70B533",
     },
     exerciseText: {
         textAlign: "center",
         fontWeight: "bold",
-        color: "brown",
+        color: "#21080C",
         padding: 10,
     },
     exerciseTitle: {
         fontSize: 36,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "#5194B8"
     }
 
 });

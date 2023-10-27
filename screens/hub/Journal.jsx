@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TouchableOpacity } from 'react-native';
-import Picker from 'react-native-picker';
+import { SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { Text, TextInput } from 'react-native-paper';
 
 import Logo from '../../components/Logo';
@@ -26,109 +26,147 @@ export default function JournalEntryPage() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSubcategory, setSelectedSubcategory] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
-  
+
     const categories = [
-      { label: 'Select a Category', value: '' },
-      { label: 'Category A', value: 'categoryA' },
-      { label: 'Category B', value: 'categoryB' },
-      // Add more categories as needed
+        { label: '', value: '' },
+        { label: 'Sad', value: 'Sad' },
+        { label: 'Happy', value: 'Happy' },
+        { label: 'Angry', value: 'Angry' },
+        { label: 'Disgusted', value: 'Disgusted' },
+        { label: 'Fearful', value: 'Fearful' },
+        { label: 'Surprise', value: 'Surprise' },
+        { label: 'Bad', value: 'Bad' },
+        // Add more categories as needed
     ];
-  
+
     const subcategories = {
-      categoryA: [
-        { label: 'Select a Subcategory', value: '' },
-        { label: 'Subcategory A1', value: 'subcategoryA1' },
-        { label: 'Subcategory A2', value: 'subcategoryA2' },
-        // Add more subcategories for Category A
-      ],
-      categoryB: [
-        { label: 'Select a Subcategory', value: '' },
-        { label: 'Subcategory B1', value: 'subcategoryB1' },
-        { label: 'Subcategory B2', value: 'subcategoryB2' },
-        // Add more subcategories for Category B
-      ],
-      // Define subcategories for other categories as needed
+        Sad: [
+            { label: '', value: '' },
+            { label: 'Subcategory A1', value: 'subcategoryA1' },
+            { label: 'Subcategory A2', value: 'subcategoryA2' },
+            // Add more subcategories for Category A
+        ],
+        Happy: [
+            { label: '', value: '' }
+        ],
+        Angry: [
+            { label: '', value: '' },
+            { label: 'Subcategory B1', value: 'subcategoryB1' },
+            { label: 'Subcategory B2', value: 'subcategoryB2' },
+            // Add more subcategories for Category B
+        ],
+        Digusted: [
+            { label: '', value: '' }
+        ],
+        Fearful: [
+            { label: '', value: '' }
+        ]
+        // Define subcategories for other categories as needed
     };
-  
+
     const items = {
-      subcategoryA1: [
-        { label: 'Select an Item', value: '' },
-        { label: 'Item A1-1', value: 'itemA1-1' },
-        { label: 'Item A1-2', value: 'itemA1-2' },
-        // Add more items for Subcategory A1
-      ],
-      subcategoryA2: [
-        { label: 'Select an Item', value: '' },
-        { label: 'Item A2-1', value: 'itemA2-1' },
-        { label: 'Item A2-2', value: 'itemA2-2' },
-        // Add more items for Subcategory A2
-      ],
-      // Define items for other subcategories as needed
+        subcategoryA1: [
+            { label: 'Select an Item', value: '' },
+            { label: 'Item A1-1', value: 'itemA1-1' },
+            { label: 'Item A1-2', value: 'itemA1-2' },
+            // Add more items for Subcategory A1
+        ],
+        subcategoryA2: [
+            { label: 'Select an Item', value: '' },
+            { label: 'Item A2-1', value: 'itemA2-1' },
+            { label: 'Item A2-2', value: 'itemA2-2' },
+            // Add more items for Subcategory A2
+        ],
+        // Define items for other subcategories as needed
     };
-  
+
     const handleCategoryChange = (category) => {
-      setSelectedCategory(category);
-      setSelectedSubcategory('');
-      setSelectedItem('');
+        setSelectedCategory(category);
+        setSelectedSubcategory('');
+        setSelectedItem('');
     };
-  
+
     const handleSubcategoryChange = (subcategory) => {
-      setSelectedSubcategory(subcategory);
-      setSelectedItem('');
+        setSelectedSubcategory(subcategory);
+        setSelectedItem('');
     };
-  
+
     return (
         <SafeAreaView style={Theme.container}>
+            <ScrollView contentContainerStyle={Theme.scroll}>
 
-            <Text style={Theme.title}>Journaling</Text>
+                <Text style={Hub.titleText}>Journaling</Text>
 
-            <Text>Write your journal entry:</Text>
+                <Text>Write your journal entry:</Text>
 
-            <TextInput
-                style={Hub.journalInput}
-                onChangeText={handleJournalEntryChange}
-                value={journalEntry}
-                multiline={true}
-                placeholder="Start writing..."
-                placeholderTextColor={'gray'}
-            />
-
-            <TouchableOpacity style={Hub.button} onPress={saveEntry} placeholder="Submit">
-                <Text style={Hub.actionButtonText}>Save Entry</Text>
-            </TouchableOpacity>
-
-            <Text>Select a Category:</Text>
-            <Picker
-                selectedValue={selectedCategory}
-                onValueChange={handleCategoryChange}
-            >
-                {categories.map((category) => (
-                <Picker.Item
-                    key={category.value}
-                    label={category.label}
-                    value={category.value}
+                <TextInput
+                    style={Hub.journalInput}
+                    onChangeText={handleJournalEntryChange}
+                    value={journalEntry}
+                    multiline={true}
+                    placeholder="Start writing..."
+                    placeholderTextColor={'gray'}
                 />
-                ))}
-            </Picker>
 
-            {selectedCategory && (
-                <>
-                <Text>Select a Subcategory:</Text>
+                <Text style={Hub.titleText}>Mood Mapping</Text>
+
+                <Text>Select a Category:</Text>
                 <Picker
-                    selectedValue={selectedSubcategory}
-                    onValueChange={(subcategory) => setSelectedSubcategory(subcategory)}
+                    style={Hub.picker}
+                    selectedValue={selectedCategory}
+                    onValueChange={(itemValue, itemIndex) =>
+                        setSelectedCategory(itemValue)}
                 >
-                    {subcategories[selectedCategory].map((subcategory) => (
-                    <Picker.Item
-                        key={subcategory.value}
-                        label={subcategory.label}
-                        value={subcategory.value}
-                    />
+                    {categories.map((category) => (
+                        <Picker.Item
+                            label={category.label}
+                            value={category.value}
+                        />
                     ))}
                 </Picker>
-                </>
-            )}
 
+                {selectedCategory && (
+                    <>
+                        <Text>Select a Subcategory:</Text>
+                        <Picker
+                            style={Hub.picker}
+                            selectedValue={selectedSubcategory}
+                            onValueChange={(subcategory) => setSelectedSubcategory(subcategory)}
+                        >
+                            {subcategories[selectedCategory].map((subcategory) => (
+                                <Picker.Item
+                                    label={subcategory.label}
+                                    value={subcategory.value}
+                                />
+                            ))}
+                        </Picker>
+                    </>
+                )}
+
+                {selectedCategory && (
+                    <>
+                        <Text>Select Your Mood:</Text>
+                        <Picker
+                            style={Hub.picker}
+                            selectedValue={selectedItem}
+                            onValueChange={(item) => setSelectedItem(item)}
+                        >
+                            {subcategories[selectedCategory].map((subcategory) => (
+                                <Picker.Item
+                                    key={subcategory.value}
+                                    label={subcategory.label}
+                                    value={subcategory.value}
+                                />
+                            ))}
+                        </Picker>
+                    </>
+                )}
+
+                <TouchableOpacity style={Hub.buttonOpac} onPress={saveEntry} placeholder="Submit">
+                    <Text style={Hub.actionButtonText}>Save Entry</Text>
+                </TouchableOpacity>
+
+            </ScrollView>
         </SafeAreaView>
     );
 }
