@@ -11,7 +11,8 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 0,
-        backgroundColor: '#FCF6EE'
+        backgroundColor: '#FCF6EE',
+        minWidth: '100%',
     },
     title: {
         fontSize: 30,

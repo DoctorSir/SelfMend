@@ -10,28 +10,45 @@ export default StyleSheet.create({
     textInput: {
         width: "75%",
         height: 400,
-        backgroundColor: "#f6e3cb",
+        backgroundColor: "#F6E3CB",
         marginBottom: 16,
         color: "red",
         padding: 10,
     },
     journalInput: {
         width: "75%",
-        height: 300,
-        backgroundColor: "#f6e3cb",
+        height: 400,
+        backgroundColor: "#F6E3CB",
         margin: 16,
         padding: 5,
-        borderRadius: 15,
+    },
+    journalOutline: {
         borderWidth: 0,
+        borderRadius: 25,
     },
     titleText: {
-        fontSize: 48,
+        fontSize: 42,
         color: "#21080C",
         fontWeight: "bold",
         margin: 24,
     },
+    headerText: {
+        fontSize: 16,
+        color: '#5194B8',
+    },
     buttonOpac: {
         backgroundColor: "#21080C",
+        borderRadius: 5,
+        marginTop: 10,
+        marginBottom: 20,
+        paddingLeft: 30,
+        paddingRight: 30,
+        paddingTop: 10,
+        paddingBottom: 10,
+        textAlign: "center"
+    },
+    submitOpac: {
+        backgroundColor: "#70B533",
         borderRadius: 5,
         marginTop: 10,
         marginBottom: 20,
@@ -47,7 +64,9 @@ export default StyleSheet.create({
     picker: {
         borderWidth: 2,
         borderRadius: 20,
-        width: "75%",
+        width: "60%",
+        marginTop: 10,
+        marginBottom: 30,
     },
     subText: {
         textDecorationLine: "underline",
