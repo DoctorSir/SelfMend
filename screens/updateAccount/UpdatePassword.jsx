@@ -21,6 +21,7 @@ export default function ChangePasswordScreen({ navigation }) {
             await reauthenticateWithCredential(user, credential).then(() => {
                 updatePassword(user, newPassword).then(() => {
                     navigation.navigate("Settings");
+                    user.reload();
                 }).catch((error) => {
                     console.log(error)
                 });
@@ -46,6 +47,7 @@ export default function ChangePasswordScreen({ navigation }) {
     return (
         <SafeAreaView style={Theme.container}>
             <Logo />
+            <Text style={Theme.title}>Change Password</Text>
             <TextInput
                 style={Theme.userInput}
                 placeholder="Enter Current Password"
@@ -73,7 +75,7 @@ export default function ChangePasswordScreen({ navigation }) {
             />
 
             <TouchableOpacity onPress={(handleChangePassword)} style={Auth.loginOpac}>
-                <Text style={Auth.actionButtonText}>Update Password</Text>
+                <Text style={Auth.actionButtonText}>Change Password</Text>
             </TouchableOpacity>
 
             <Text style={Theme.errorText}>{error}</Text>

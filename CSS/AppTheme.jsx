@@ -8,7 +8,7 @@ export default StyleSheet.create({
         backgroundColor: '#FCF6EE'
     },
     title: {
-        fontSize: 40,
+        fontSize: 30,
         color: '#21080C',
         fontWeight: 'bold',
         margin: 16,

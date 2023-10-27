@@ -41,6 +41,8 @@ export default function ChangePasswordScreen({ navigation }) {
         <SafeAreaView style={Theme.container}>
             <Logo />
 
+            <Text style={Theme.title}>Change Email</Text>
+
             <TextInput
                 style={Theme.userInput}
                 placeholder="Enter New Email"
@@ -51,7 +53,7 @@ export default function ChangePasswordScreen({ navigation }) {
             />
 
             <TouchableOpacity onPress={(handleEmailChange)} style={Auth.loginOpac}>
-                <Text style={Auth.actionButtonText}>Update Email</Text>
+                <Text style={Auth.actionButtonText}>Change Email</Text>
             </TouchableOpacity>
 
             <Text style={Theme.errorText}>{error}</Text>
