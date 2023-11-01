@@ -22,9 +22,7 @@ export default function ChangePasswordScreen({ navigation }) {
                 updatePassword(user, newPassword).then(() => {
                     navigation.navigate("Settings");
                     user.reload();
-                }).catch((error) => {
-                    console.log(error)
-                });
+                })
             });
         } catch (error) {
             console.log(error)
