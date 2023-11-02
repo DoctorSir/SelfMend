@@ -20,6 +20,7 @@
     "react-native": "0.72.6",
     "react-native-paper": "^5.10.6",
     "react-native-picker": "^4.3.7",
+    "react-native-select-dropdown": "^3.4.0",
     "react-native-vector-icons": "^10.0.0",
     "react-select": "^5.7.7"
   },

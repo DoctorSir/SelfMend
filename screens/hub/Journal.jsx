@@ -3,7 +3,6 @@ import { SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Text, TextInput } from 'react-native-paper';
 
-import Logo from '../../components/Logo';
 import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling'; // Import your styles
 
@@ -36,7 +35,6 @@ export default function JournalEntryPage() {
         { label: 'Fearful', value: 'Fearful' },
         { label: 'Surprised', value: 'Surprised' },
         { label: 'Bad', value: 'Bad' },
-        // Add more categories as needed
     ];
 
     const subcategories = {

@@ -67,6 +67,7 @@ export default StyleSheet.create({
         width: "60%",
         marginTop: 10,
         marginBottom: 30,
+        height: 100,
     },
     subText: {
         textDecorationLine: "underline",
