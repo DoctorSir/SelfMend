@@ -9,7 +9,7 @@ export default StyleSheet.create({
         backgroundColor: "#FCF6EE"
     },
     header: {
-        fontSize: 19,
+        fontSize: 18,
         fontWeight: 'bold',
         marginTop: 20,
         alignSelf: 'center',
@@ -28,12 +28,12 @@ export default StyleSheet.create({
     },
     listItem988Title: {
         marginTop: 20,
-        fontSize: 24,
+        fontSize: 22,
         textAlign: "center",
         color: "red"
     },
     listItem988Desc: {
-        fontSize: 16,
+        fontSize: 15,
         textAlign: "center"
     }
 
