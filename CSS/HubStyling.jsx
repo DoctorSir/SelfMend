@@ -84,6 +84,18 @@ export default StyleSheet.create({
         fontSize: 36,
         fontWeight: "bold",
         color: "#5194B8"
-    }
+    },
+    welcomeText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginVertical: 25,
+    },
+    reminderText: {
+        fontSize: 18,
+        color: '#555555',
+        textAlign: 'center',
+        paddingHorizontal: 20,
+        marginVertical: 25
+    },
 
 });
