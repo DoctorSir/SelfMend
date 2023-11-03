@@ -61,13 +61,14 @@ export default StyleSheet.create({
     actionButtonText: {
         color: "#FCF6EE",
     },
-    picker: {
+    dropdown: {
         borderWidth: 2,
         borderRadius: 20,
-        width: "60%",
+        width: "50%",
         marginTop: 10,
         marginBottom: 30,
-        height: 100,
+        height: 50,
+        backgroundColor: '#FCF6EE'
     },
     subText: {
         textDecorationLine: "underline",

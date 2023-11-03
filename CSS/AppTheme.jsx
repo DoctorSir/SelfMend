@@ -7,6 +7,12 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#FCF6EE'
     },
+    staticContainer: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: '#FCF6EE'
+    },
     scroll: {
         justifyContent: 'center',
         alignItems: 'center',

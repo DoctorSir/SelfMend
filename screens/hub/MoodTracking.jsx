@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import { SafeAreaView, TouchableOpacity } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
-import { Text, TextInput } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 
 import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling'; // Import your styles
@@ -16,7 +15,7 @@ export default function MoodTrackingPage() {
         // Here, you would save the journal entry to your database or storage system.
         // You can use AsyncStorage or a backend API to handle data storage.
         // For simplicity, we're just displaying the journal entry here.
-        console.log('Journal Entry:', journalEntry);
+        console.log('Mood:', selectedItem);
     };
 
     const categories = [
@@ -315,71 +314,72 @@ export default function MoodTrackingPage() {
     };
 
     return (
-        <SafeAreaView style={Theme.container}>
-            <ScrollView contentContainerStyle={Theme.scroll}>
-                <Text style={Hub.titleText}>Mood Mapping</Text>
+        <SafeAreaView style={Theme.staticContainer}>
+            <Text style={Hub.titleText}>Mood Mapping</Text>
 
-                <Text style={Hub.headerText}>Select a Category:</Text>
+            <Text style={Hub.headerText}>Select a Category:</Text>
 
-                <SelectDropdown
-                />
+            <SelectDropdown
+                data={categories}
+                buttonStyle={Hub.dropdown}
+                onSelect={(selectedItem, index) => {
+                    handleCategoryChange(selectedItem.value);
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                    return selectedItem.label;
+                }}
+                rowTextForSelection={(item, index) => {
+                    return item.label;
+                }}
+            />
 
-                <Picker
-                    style={Hub.picker}
-                    itemStyle={{ height: 100 }}
-                    selectedValue={selectedCategory}
-                    onValueChange={(itemValue, itemIndex) =>
-                        setSelectedCategory(itemValue)}
-                >
-                    {categories.map((category) => (
-                        <Picker.Item
-                            label={category.label}
-                            value={category.value}
-                        />
-                    ))}
-                </Picker>
+            {selectedCategory && (
+                <>
+                    <Text style={Hub.headerText}>Select a Subcategory:</Text>
 
-                {selectedCategory && (
-                    <>
-                        <Text style={Hub.headerText}>Select a Subcategory:</Text>
-                        <Picker
-                            style={Hub.picker}
-                            selectedValue={selectedSubcategory}
-                            onValueChange={(subcategory) => setSelectedSubcategory(subcategory)}
-                        >
-                            {subcategories[selectedCategory].map((subcategory) => (
-                                <Picker.Item
-                                    label={subcategory.label}
-                                    value={subcategory.value}
-                                />
-                            ))}
-                        </Picker>
-                    </>
-                )}
+                    <SelectDropdown
+                        data={subcategories[selectedCategory]}
+                        buttonStyle={Hub.dropdown}
+                        onSelect={(selectedItem, index) => {
+                            handleSubcategoryChange(selectedItem.value);
+                        }}
+                        buttonTextAfterSelection={(selectedItem, index) => {
+                            return selectedItem.label;
+                        }}
+                        rowTextForSelection={(item, index) => {
+                            return item.label;
+                        }}
+                    />
+                </>
+            )}
 
-                {selectedSubcategory && (
-                    <>
-                        <Text style={Hub.headerText}>Select Your Mood:</Text>
-                        <Picker
-                            style={Hub.picker}
-                            selectedValue={selectedItem}
-                            onValueChange={(item) => setSelectedItem(item)}
-                        >
-                            {items[selectedSubcategory].map((item) => (
-                                <Picker.Item
-                                    label={item.label}
-                                    value={item.value}
-                                />
-                            ))}
-                        </Picker>
-                    </>
-                )}
+            {selectedSubcategory && (
+                <>
+                    <Text style={Hub.headerText}>Select Your Mood:</Text>
 
+                    <SelectDropdown
+                        data={items[selectedSubcategory]}
+                        buttonStyle={Hub.dropdown}
+                        onSelect={(selectedItem, index) => {
+                            setSelectedItem(selectedItem.value);
+                        }}
+                        buttonTextAfterSelection={(selectedItem, index) => {
+                            return selectedItem.label;
+                        }}
+                        rowTextForSelection={(item, index) => {
+                            return item.label;
+                        }}
+                    />
+
+                </>
+            )}
+
+            {selectedItem && (
                 <TouchableOpacity style={Hub.submitOpac} onPress={saveEntry} placeholder="Submit">
                     <Text style={Hub.actionButtonText}>Save Entry</Text>
                 </TouchableOpacity>
+            )}
 
-            </ScrollView>
         </SafeAreaView>
     )
 }

@@ -1,26 +1,47 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import { Text, TextInput } from 'react-native-paper';
+import { db } from '../../services/firebaseConfig';
+import { collection, addDoc } from "firebase/firestore";
+import SelectDropdown from 'react-native-select-dropdown';
 
 import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling'; // Import your styles
 
-export default function JournalEntryPage() {
-    const [journalEntry, setJournalEntry] = useState('');
+export const writeJournalEntryToFirebase = async (entry) => {
 
-    const handleJournalEntryChange = (text) => {
-        setJournalEntry(text);
+    try {
+        // Add a new document in collection "JournalEntries"
+        const docRef = await addDoc(collection(db, "JournalEntries"), {
+            Date: entry.Date,
+            Title: entry.Title,
+            Text: entry.Text,
+            uid: entry.uid,
+        });
+    } catch (error) {
+        console.error('Error saving entry:', error);
+        throw error;
+    }
+}
+
+export default function JournalEntryPage() {
+    const [journalEntry, setJournalEntry] = useState({
+        Date: '',
+        Title: '',
+        Text: '',
+        uid: '', // Make sure to set uid appropriately
+    });
+
+    const handleJournalEntryChange = (name, text) => {
+        setJournalEntry({ ...journalEntry, [name]: Text });
     };
 
     const saveEntry = () => {
-        // Here, you would save the journal entry to your database or storage system.
-        // You can use AsyncStorage or a backend API to handle data storage.
-        // For simplicity, we're just displaying the journal entry here.
-        console.log('Journal Entry:', journalEntry);
+        // Call the function to save the journal entry to Firestore
+        writeJournalEntryToFirebase(journalEntry);
     };
 
-    //------------------------------Pickers------------------------------------
+    //------------------------------Dropdowns------------------------------------
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSubcategory, setSelectedSubcategory] = useState('');
@@ -344,59 +365,67 @@ export default function JournalEntryPage() {
                 <Text style={Hub.titleText}>Mood Mapping</Text>
 
                 <Text style={Hub.headerText}>Select a Category:</Text>
-                <Picker
-                    style={Hub.picker}
-                    selectedValue={selectedCategory}
-                    onValueChange={(itemValue, itemIndex) =>
-                        setSelectedCategory(itemValue)}
-                >
-                    {categories.map((category) => (
-                        <Picker.Item
-                            label={category.label}
-                            value={category.value}
-                        />
-                    ))}
-                </Picker>
+
+                <SelectDropdown
+                    data={categories}
+                    buttonStyle={Hub.dropdown}
+                    onSelect={(selectedItem, index) => {
+                        handleCategoryChange(selectedItem.value);
+                    }}
+                    buttonTextAfterSelection={(selectedItem, index) => {
+                        return selectedItem.label;
+                    }}
+                    rowTextForSelection={(item, index) => {
+                        return item.label;
+                    }}
+                />
 
                 {selectedCategory && (
                     <>
                         <Text style={Hub.headerText}>Select a Subcategory:</Text>
-                        <Picker
-                            style={Hub.picker}
-                            selectedValue={selectedSubcategory}
-                            onValueChange={(subcategory) => setSelectedSubcategory(subcategory)}
-                        >
-                            {subcategories[selectedCategory].map((subcategory) => (
-                                <Picker.Item
-                                    label={subcategory.label}
-                                    value={subcategory.value}
-                                />
-                            ))}
-                        </Picker>
+
+                        <SelectDropdown
+                            data={subcategories[selectedCategory]}
+                            buttonStyle={Hub.dropdown}
+                            onSelect={(selectedItem, index) => {
+                                handleSubcategoryChange(selectedItem.value);
+                            }}
+                            buttonTextAfterSelection={(selectedItem, index) => {
+                                return selectedItem.label;
+                            }}
+                            rowTextForSelection={(item, index) => {
+                                return item.label;
+                            }}
+                        />
                     </>
                 )}
 
                 {selectedSubcategory && (
                     <>
                         <Text style={Hub.headerText}>Select Your Mood:</Text>
-                        <Picker
-                            style={Hub.picker}
-                            selectedValue={selectedItem}
-                            onValueChange={(item) => setSelectedItem(item)}
-                        >
-                            {items[selectedSubcategory].map((item) => (
-                                <Picker.Item
-                                    label={item.label}
-                                    value={item.value}
-                                />
-                            ))}
-                        </Picker>
+
+                        <SelectDropdown
+                            data={items[selectedSubcategory]}
+                            buttonStyle={Hub.dropdown}
+                            onSelect={(selectedItem, index) => {
+                                setSelectedItem(selectedItem.value);
+                            }}
+                            buttonTextAfterSelection={(selectedItem, index) => {
+                                return selectedItem.label;
+                            }}
+                            rowTextForSelection={(item, index) => {
+                                return item.label;
+                            }}
+                        />
+
                     </>
                 )}
 
-                <TouchableOpacity style={Hub.submitOpac} onPress={saveEntry} placeholder="Submit">
-                    <Text style={Hub.actionButtonText}>Save Entry</Text>
-                </TouchableOpacity>
+                {journalEntry.Text && selectedItem && (
+                    <TouchableOpacity style={Hub.submitOpac} onPress={saveEntry} placeholder="Submit">
+                        <Text style={Hub.actionButtonText}>Save Entry</Text>
+                    </TouchableOpacity>
+                )}
 
             </ScrollView>
         </SafeAreaView>
