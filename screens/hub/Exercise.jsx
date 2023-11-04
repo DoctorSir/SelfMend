@@ -95,7 +95,7 @@ export default function ExercisePage() {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 80 }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 80, backgroundColor: "#FCF6EE" }}>
       <ScrollView showsVerticalScrollIndicator={false} style={{ width: "120%"}}>
         <Text style={Hub.exerciseTitle}>Mental Health Exercises</Text>
         {accordionItems.map((item, index) => (
