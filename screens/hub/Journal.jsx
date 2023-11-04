@@ -8,14 +8,14 @@ import SelectDropdown from 'react-native-select-dropdown';
 import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling'; // Import your styles
 
-export const writeJournalEntryToFirebase = async (entry) => {
+const writeJournalEntryToFirebase = async (entry) => {
 
     try {
         // Add a new document in collection "JournalEntries"
         const docRef = await addDoc(collection(db, "JournalEntries"), {
-            Date: entry.Date,
-            Title: entry.Title,
-            Text: entry.Text,
+            Date: getCurrentDateAndTime(),
+            Text: journalText,
+            Mood: journalMood,
             uid: entry.uid,
         });
     } catch (error) {
@@ -24,21 +24,36 @@ export const writeJournalEntryToFirebase = async (entry) => {
     }
 }
 
+const getCurrentDateAndTime = () => {
+    let date = new Date().getDate(); //Current Date
+    let month = new Date().getMonth() + 1; //Current Month
+    let year = new Date().getFullYear(); //Current Year
+    let hours = new Date().getHours(); //Current Hours
+    let min = new Date().getMinutes(); //Current Minutes
+    let sec = new Date().getSeconds(); //Current Seconds
+    return (month + '/' + date + '/' + year + ' at ' + hours + ':' + min + ':' + sec);
+}
+
 export default function JournalEntryPage() {
+    const [journalText, setJournalText] = useState("");
+    const [journalMood, setJournalMood] = useState("");
+
+
     const [journalEntry, setJournalEntry] = useState({
-        Date: '',
         Title: '',
         Text: '',
         uid: '', // Make sure to set uid appropriately
     });
 
-    const handleJournalEntryChange = (name, text) => {
-        setJournalEntry({ ...journalEntry, [name]: Text });
-    };
+    // const handleJournalEntryChange = (name, text) => {
+    //     setJournalEntry({ ...journalEntry, [name]: Text });
+    // };
 
     const saveEntry = () => {
         // Call the function to save the journal entry to Firestore
-        writeJournalEntryToFirebase(journalEntry);
+        //writeJournalEntryToFirebase(journalEntry);
+        console.log(journalText);
+        console.log(journalMood);
     };
 
     //------------------------------Dropdowns------------------------------------
@@ -353,8 +368,8 @@ export default function JournalEntryPage() {
                 <TextInput
                     style={Hub.journalInput}
                     mode='outlined'
-                    onChangeText={handleJournalEntryChange}
-                    value={journalEntry}
+                    onChangeText={(text) => setJournalText(text)}
+                    value={journalText}
                     multiline={true}
                     placeholder="Start writing here..."
                     placeholderTextColor='gray'
@@ -409,6 +424,7 @@ export default function JournalEntryPage() {
                             buttonStyle={Hub.dropdown}
                             onSelect={(selectedItem, index) => {
                                 setSelectedItem(selectedItem.value);
+                                setJournalMood(selectedItem["value"]);
                             }}
                             buttonTextAfterSelection={(selectedItem, index) => {
                                 return selectedItem.label;
@@ -421,7 +437,7 @@ export default function JournalEntryPage() {
                     </>
                 )}
 
-                {journalEntry.Text && selectedItem && (
+                {selectedItem && (
                     <TouchableOpacity style={Hub.submitOpac} onPress={saveEntry} placeholder="Submit">
                         <Text style={Hub.actionButtonText}>Save Entry</Text>
                     </TouchableOpacity>
