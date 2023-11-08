@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F6E3CB",
+    backgroundColor: "#FCF6EE",
   },
   textInput: {
     width: "75%",
@@ -95,6 +95,7 @@ export default StyleSheet.create({
     backgroundColor: "#090909",
   },
   buttonBackgroundPressed: {
+    borderWidth: "2",
     backgroundColor: "#FCF6EE",
   },
   buttonText: {
@@ -105,8 +106,15 @@ export default StyleSheet.create({
   buttonTextPressed: {
     textAlign: "center",
     color: "black",
-    padding: 20,
+    padding: 10,
     fontSize: 18,
+  },
+  exeContainer: {  // Exercise Container
+    flex: 1, 
+    justifyContent: "center", 
+    alignItems: "center", 
+    padding: 80, 
+    backgroundColor: "#FCF6EE"
   },
   welcomeText: {
     fontSize: 24,

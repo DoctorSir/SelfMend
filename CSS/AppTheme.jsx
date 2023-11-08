@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    container: {
+    container: {  // Journal
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#FCF6EE'
     },
-    staticContainer: {
+    staticContainer: {  // Mood Mapping
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
