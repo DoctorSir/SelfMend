@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
-import { db } from '../../services/firebaseConfig';
+import { auth, db } from '../../services/firebaseConfig';
 import { collection, addDoc } from "firebase/firestore";
 import SelectDropdown from 'react-native-select-dropdown';
 
@@ -11,13 +11,15 @@ import { categories, subcategories, items } from '../../utils/Moods';
 
 const writeJournalEntryToFirebase = async (journalText, journalMood) => {
 
+    const user = auth.currentUser;
+
     try {
         // Add a new document in collection "JournalEntries"
         const docRef = await addDoc(collection(db, "JournalEntries"), {
             Date: getCurrentDateAndTime(),
             Text: journalText,
             Mood: journalMood,
-            // uid: entry.uid,
+            uid: user.uid,
         });
     } catch (error) {
         console.error('Error saving entry:', error);
