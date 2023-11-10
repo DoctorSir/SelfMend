@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, SafeAreaView } from 'react-native';
 import { FAB } from 'react-native-paper';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
 
 import { auth, db } from '../../services/firebaseConfig';
 import Hub from '../../CSS/HubStyling';
@@ -11,7 +11,7 @@ export default function EntryList({ navigation }) {
 
     useEffect(() => {
         const fetchEntries = async () => {
-            const entriesQuery = query(collection(db, "JournalEntries"), where("uid", "==", auth.currentUser.uid));
+            const entriesQuery = query(collection(db, "JournalEntries"), where("uid", "==", auth.currentUser.uid), orderBy("Date", "asc"));
 
             try {
                 const querySnapshot = await getDocs(entriesQuery);
