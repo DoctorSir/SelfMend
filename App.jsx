@@ -11,6 +11,7 @@ import HubNavigator from './navigation/HubNavigator';
 import UpdateEmailScreen from './screens/updateAccount/UpdateEmail';
 import UpdatePasswordScreen from './screens/updateAccount/UpdatePassword';
 import FindHelp from './screens/hub/FindHelp';
+import JournalEntry from './screens/hub/Journal';
 
 
 // create new stack navigator to go between screens
@@ -27,6 +28,7 @@ export default function App() {
 
                 <Stack.Screen name="Hub Navigator" component={HubNavigator} />
                 <Stack.Screen name="Find Help" component={FindHelp} />
+                <Stack.Screen name="New Entry" component={JournalEntry} />
 
                 <Stack.Screen name="Update Password" component={UpdatePasswordScreen} />
                 <Stack.Screen name="Update Email" component={UpdateEmailScreen} />

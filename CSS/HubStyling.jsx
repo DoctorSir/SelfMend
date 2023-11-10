@@ -28,7 +28,7 @@ export default StyleSheet.create({
   },
   titleText: {
     fontSize: 42,
-    color: "#21080C",
+    color: "#421018",
     fontWeight: "bold",
     margin: 24,
   },
@@ -37,7 +37,7 @@ export default StyleSheet.create({
     color: "#5194B8",
   },
   buttonOpac: {
-    backgroundColor: "#21080C",
+    backgroundColor: "#421018",
     borderRadius: 5,
     marginTop: 10,
     marginBottom: 20,
@@ -77,13 +77,13 @@ export default StyleSheet.create({
   exerciseText: {
     textAlign: "center",
     fontWeight: "bold",
-    color: "#21080C",
+    color: "#421018",
     padding: 10,
   },
   exerciseTitle: {
     fontSize: 26,
     fontWeight: "bold",
-    color: "#21080C",
+    color: "#421018",
     textAlign: "center",
     padding: 32,
   },
@@ -110,16 +110,17 @@ export default StyleSheet.create({
     fontSize: 18,
   },
   exeContainer: {  // Exercise Container
-    flex: 1, 
-    justifyContent: "center", 
-    alignItems: "center", 
-    padding: 80, 
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 80,
     backgroundColor: "#FCF6EE"
   },
   welcomeText: {
     fontSize: 24,
     fontWeight: "bold",
     marginVertical: 25,
+    color: '#421018'
   },
   reminderText: {
     fontSize: 18,
@@ -127,5 +128,42 @@ export default StyleSheet.create({
     textAlign: "center",
     paddingHorizontal: 20,
     marginVertical: 25,
+  },
+  entryContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FCF6EE'
+  },
+  entryList: {
+    padding: 10
+  },
+  entry: {
+    borderWidth: 2,
+    borderRadius: 25,
+    margin: 5,
+    padding: 10,
+    color: "#421018",
+  },
+  entryDate: {
+    textDecorationLine: 'underline',
+    marginBottom: 10,
+    color: "#5194B8",
+  },
+  entryText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: "#421018",
+  },
+  entryMood: {
+    textAlign: 'right'
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 10,
+    bottom: 10,
+    backgroundColor: '#70B533',
+    borderRadius: '50%',
   },
 });

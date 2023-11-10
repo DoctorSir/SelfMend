@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
-import { auth, db } from '../../services/firebaseConfig';
 import { collection, addDoc } from "firebase/firestore";
 import SelectDropdown from 'react-native-select-dropdown';
 
+import { auth, db } from '../../services/firebaseConfig';
 import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling'; // Import your styles
 import { categories, subcategories, items } from '../../utils/Moods';
@@ -44,8 +44,6 @@ export default function JournalEntryPage() {
     const saveEntry = () => {
         // Call the function to save the journal entry to Firestore
         writeJournalEntryToFirebase(journalText, journalMood);
-        console.log(journalText);
-        console.log(journalMood);
     };
 
     //------------------------------Dropdowns------------------------------------
@@ -69,7 +67,7 @@ export default function JournalEntryPage() {
         <SafeAreaView style={Theme.container}>
             <ScrollView contentContainerStyle={Theme.scroll}>
 
-                <Text style={Hub.titleText}>Journaling</Text>
+                <Text style={Hub.titleText}>New Entry</Text>
 
                 <Text style={Hub.headerText}>Write your journal entry:</Text>
 
