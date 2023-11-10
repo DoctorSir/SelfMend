@@ -2,10 +2,41 @@ import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import { Text } from 'react-native-paper';
+import { collection, addDoc } from "firebase/firestore";
 
+import { auth, db } from '../../services/firebaseConfig';
 import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling'; // Import your styles
 import { categories, subcategories, items } from '../../utils/Moods';
+
+const writeJournalEntryToFirebase = async (journalMood) => {
+
+    const user = auth.currentUser;
+
+    try {
+        // Add a new document in collection "JournalEntries"
+        const docRef = await addDoc(collection(db, "JournalEntries"), {
+            Date: getCurrentDateAndTime(),
+            Mood: journalMood,
+            uid: user.uid,
+        });
+
+        console.log(journalMood);
+    } catch (error) {
+        console.error('Error saving entry:', error);
+        throw error;
+    }
+}
+
+const getCurrentDateAndTime = () => {
+    let date = new Date().getDate(); //Current Date
+    let month = new Date().getMonth() + 1; //Current Month
+    let year = new Date().getFullYear(); //Current Year
+    let hours = new Date().getHours(); //Current Hours
+    let min = new Date().getMinutes(); //Current Minutes
+    let sec = new Date().getSeconds(); //Current Seconds
+    return (month + '/' + date + '/' + year + ' at ' + hours + ':' + min + ':' + sec);
+}
 
 export default function MoodTrackingPage() {
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -13,10 +44,8 @@ export default function MoodTrackingPage() {
     const [selectedItem, setSelectedItem] = useState('');
 
     const saveEntry = () => {
-        // Here, you would save the journal entry to your database or storage system.
-        // You can use AsyncStorage or a backend API to handle data storage.
-        // For simplicity, we're just displaying the journal entry here.
-        console.log('Mood:', selectedItem);
+        // Call the function to save the journal entry to Firestore
+        writeJournalEntryToFirebase(selectedItem);
     };
 
     const handleCategoryChange = (category) => {
