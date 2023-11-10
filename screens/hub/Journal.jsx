@@ -9,23 +9,6 @@ import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling'; // Import your styles
 import { categories, subcategories, items } from '../../utils/Moods';
 
-const writeJournalEntryToFirebase = async (journalText, journalMood) => {
-
-    const user = auth.currentUser;
-
-    try {
-        // Add a new document in collection "JournalEntries"
-        const docRef = await addDoc(collection(db, "JournalEntries"), {
-            Date: getCurrentDateAndTime(),
-            Text: journalText,
-            Mood: journalMood,
-            uid: user.uid,
-        });
-    } catch (error) {
-        console.error('Error saving entry:', error);
-        throw error;
-    }
-}
 
 const getCurrentDateAndTime = () => {
     let date = new Date().getDate(); //Current Date
@@ -37,11 +20,34 @@ const getCurrentDateAndTime = () => {
     return (month + '/' + date + '/' + year + ' at ' + hours + ':' + min + ':' + sec);
 }
 
-export default function JournalEntryPage() {
+export default function JournalEntryPage({ navigation }) {
     const [journalText, setJournalText] = useState("");
     const [journalMood, setJournalMood] = useState("");
 
     const saveEntry = () => {
+
+        const writeJournalEntryToFirebase = async (journalText, journalMood) => {
+
+            const user = auth.currentUser;
+
+            try {
+                // Add a new document in collection "JournalEntries"
+                const docRef = await addDoc(collection(db, "JournalEntries"), {
+                    Date: getCurrentDateAndTime(),
+                    Text: journalText,
+                    Mood: journalMood,
+                    uid: user.uid,
+                });
+
+                navigation.navigate("Hub Navigator");
+
+            } catch (error) {
+                console.error('Error saving entry:', error);
+                throw error;
+            }
+        }
+
+
         // Call the function to save the journal entry to Firestore
         writeJournalEntryToFirebase(journalText, journalMood);
     };
@@ -65,7 +71,10 @@ export default function JournalEntryPage() {
 
     return (
         <SafeAreaView style={Theme.container}>
-            <ScrollView contentContainerStyle={Theme.scroll}>
+            <ScrollView
+                contentContainerStyle={Theme.scroll}
+                showsVerticalScrollIndicator={false}
+            >
 
                 <Text style={Hub.titleText}>New Entry</Text>
 
