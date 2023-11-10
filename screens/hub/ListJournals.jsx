@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, SafeAreaView } from 'react-native';
 import { FAB } from 'react-native-paper';
-import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { auth, db } from '../../services/firebaseConfig';
@@ -10,26 +10,6 @@ import Hub from '../../CSS/HubStyling';
 export default function EntryList({ navigation }) {
     const [entries, setEntries] = useState([]);
 
-    useEffect(() => {
-        const fetchEntries = async () => {
-            const entriesQuery = query(collection(db, "JournalEntries"), where("uid", "==", auth.currentUser.uid), orderBy("Date", "asc"));
-
-            try {
-                const querySnapshot = await getDocs(entriesQuery);
-                const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-                setEntries(data);
-            } catch (error) {
-                console.error('Error fetching entries:', error);
-            }
-        };
-
-        useFocusEffect(
-            React.useCallback(() => {
-                fetchEntries();
-            }, [])
-        );
-
-    }, []); // Empty dependency array means this effect runs once when the component mounts
     const fetchEntries = async () => {
         const entriesQuery = query(collection(db, "JournalEntries"), where("uid", "==", auth.currentUser.uid));
 
