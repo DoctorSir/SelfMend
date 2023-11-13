@@ -8,7 +8,7 @@ export default function PMR() {
     return (
         <SafeAreaView style={HubStyling.exerciseContainer}>
             <View style={HubStyling.exerciseHeader}>
-                <Text style={HubStyling.exerciseTitle}>"Progressive Muscle Relaxation</Text>
+                <Text style={HubStyling.exerciseTitle}>Progressive Muscle Relaxation</Text>
             </View>
 
             <View style={HubStyling.exerciseSteps}>
