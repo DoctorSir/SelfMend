@@ -5,7 +5,6 @@ import HubStyling from "../../CSS/HubStyling";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function DBS() {
-
     return (
         <SafeAreaView style={HubStyling.exerciseContainer}>
             <View style={HubStyling.exerciseHeader}>
