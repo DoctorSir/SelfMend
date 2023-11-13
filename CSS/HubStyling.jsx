@@ -149,14 +149,14 @@ export default StyleSheet.create({
         color: "#000000",
     },
     entryDate: {
-        textDecorationLine: 'underline',
         marginBottom: 10,
-        color: "#5194B8",
+        color: "#000000",
     },
     entryText: {
         fontSize: 18,
         fontWeight: 'bold',
         color: "#000000",
+        textAlign: "center"
     },
     entryMood: {
         textAlign: 'right'
