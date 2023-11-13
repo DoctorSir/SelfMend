@@ -22,7 +22,7 @@ export default StyleSheet.create({
     },
     title: {
         fontSize: 30,
-        color: '#421018',
+        color: '#000000',
         fontWeight: 'bold',
         margin: 16,
     },

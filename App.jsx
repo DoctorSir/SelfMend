@@ -13,7 +13,9 @@ import UpdatePasswordScreen from './screens/updateAccount/UpdatePassword';
 import FindHelp from './screens/hub/FindHelp';
 import JournalEntry from './screens/hub/Journal';
 import JournalEntryList from "./screens/hub/ListJournals";
-
+import DBS from "./screens/exercises/DBS";
+import FSE from "./screens/exercises/FSE";
+import PMR from "./screens/exercises/PMR";
 
 // create new stack navigator to go between screens
 const Stack = createStackNavigator();
@@ -34,6 +36,10 @@ export default function App() {
 
                 <Stack.Screen name="Update Password" component={UpdatePasswordScreen} />
                 <Stack.Screen name="Update Email" component={UpdateEmailScreen} />
+
+                <Stack.Screen name="DBS" component={DBS} />
+                <Stack.Screen name="FSE" component={FSE} />
+                <Stack.Screen name="PMR" component={PMR} />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     loginOpac: {
-        backgroundColor: "#421018",
+        backgroundColor: "#000000",
         borderRadius: 5,
         marginTop: 10,
         marginBottom: 20,
