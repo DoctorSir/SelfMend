@@ -10,7 +10,6 @@ export default function ExerciseScreen({ navigation }) {
       <SafeAreaView style={HubStyling.exerciseContainer}>
         <View style={HubStyling.exerciseHeader}>
           <Text style={HubStyling.exerciseTitle}>Mental Health Exercises</Text>
-          <Logo />
         </View>
 
         <View style={HubStyling.exerciseAction}>
