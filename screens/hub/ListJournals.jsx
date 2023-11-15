@@ -53,7 +53,7 @@ export default function EntryList({ navigation }) {
             <FAB
                 style={Hub.fab}
                 icon="plus"
-                color="#421018"
+                color="#FCF6EE"
                 onPress={() => navigation.navigate('New Entry')}
             />
         </SafeAreaView>

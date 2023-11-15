@@ -65,38 +65,17 @@ export default StyleSheet.create({
   },
   dropdown: {
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: 50,
     width: "50%",
     marginTop: 10,
     marginBottom: 30,
     height: 50,
-    backgroundColor: "#FCF6EE",
+    backgroundColor: "#5194B8",
+    color: "#FCF6EE"
   },
   subText: {
     textDecorationLine: "underline",
     color: "#70B533",
-  },
-  button: {
-    padding: 5,
-    borderRadius: 5,
-  },
-  buttonBackground: {
-    backgroundColor: "#090909",
-  },
-  buttonBackgroundPressed: {
-    borderWidth: "2",
-    backgroundColor: "#FCF6EE",
-  },
-  buttonText: {
-    textAlign: "center",
-    color: "white",
-    padding: 1,
-  },
-  buttonTextPressed: {
-    textAlign: "center",
-    color: "black",
-    padding: 10,
-    fontSize: 18,
   },
   welcomeText: {
     fontSize: 24,
@@ -146,7 +125,7 @@ export default StyleSheet.create({
     margin: 16,
     right: 10,
     bottom: 10,
-    backgroundColor: '#70B533',
+    backgroundColor: '#421018',
     borderRadius: '50%',
   },
   exerciseContainer: {
@@ -176,19 +155,20 @@ export default StyleSheet.create({
     justifyContent: "center"
   },
   exerciseOpac: {
-    backgroundColor: "#421018",
-    borderRadius: 5,
-    marginTop: 10,
+    backgroundColor: "#5194B8",
+    borderRadius: 50,
+    marginTop: 1,
     marginBottom: 50,
     paddingHorizontal: 30,
     paddingVertical: 20,
     width: windowWidth * .72,
     borderWidth: 2,
+    borderColor: "#421018",
   },
   exerciseOpacText: {
     fontSize: 13,
     fontWeight: "600",
-    color: "#000000",
+    color: "#FCF6EE",
     textTransform: "uppercase",
     textAlign: 'center'
   },
