@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, SafeAreaView } from 'react-native';
 import { FAB } from 'react-native-paper';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, orderBy, getDocs } from 'firebase/firestore';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { auth, db } from '../../services/firebaseConfig';
@@ -11,7 +11,11 @@ export default function EntryList({ navigation }) {
     const [entries, setEntries] = useState([]);
 
     const fetchEntries = async () => {
-        const entriesQuery = query(collection(db, "JournalEntries"), where("uid", "==", auth.currentUser.uid));
+        const entriesQuery = query(
+            collection(db, "JournalEntries"),
+            where("uid", "==", auth.currentUser.uid),
+            orderBy("Date", "desc")
+        );
 
         try {
             const querySnapshot = await getDocs(entriesQuery);

@@ -10,7 +10,7 @@ export default StyleSheet.create({
     settingsSectionText: {
         fontSize: 14,
         fontWeight: "600",
-        color: "#000000",
+        color: "#421018",
         textTransform: "uppercase",
         letterSpacing: 1.2,
         textAlign: 'center'
@@ -18,7 +18,7 @@ export default StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: "bold",
-        color: "#000000",
+        color: "#421018",
         textAlign: 'center',
         paddingHorizontal: 5,
         paddingVertical: 8,
@@ -47,7 +47,7 @@ export default StyleSheet.create({
         flex: 1,
     },
     settingsOpac: {
-        backgroundColor: "#000000",
+        backgroundColor: "#421018",
         borderRadius: 5,
         marginTop: 10,
         marginBottom: 20,

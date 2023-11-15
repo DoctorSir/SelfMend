@@ -30,7 +30,7 @@ export default StyleSheet.create({
     },
     titleText: {
         fontSize: 42,
-        color: "#000000",
+        color: "#421018",
         fontWeight: "bold",
         margin: 24,
     },
@@ -39,7 +39,7 @@ export default StyleSheet.create({
         color: "#5194B8",
     },
     buttonOpac: {
-        backgroundColor: "#000000",
+        backgroundColor: "#421018",
         borderRadius: 5,
         marginTop: 10,
         marginBottom: 20,
@@ -79,13 +79,13 @@ export default StyleSheet.create({
     exerciseText: {
         textAlign: "center",
         fontWeight: "bold",
-        color: "#000000",
+        color: "#421018",
         padding: 10,
     },
     exerciseTitle: {
         fontSize: 26,
         fontWeight: "bold",
-        color: "#000000",
+        color: "#421018",
         textAlign: "center",
         padding: 32,
     },
@@ -122,7 +122,7 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold",
         marginVertical: 25,
-        color: '#000000'
+        color: '#421018'
     },
     reminderText: {
         fontSize: 18,
@@ -146,16 +146,16 @@ export default StyleSheet.create({
         borderRadius: 25,
         margin: 5,
         padding: 10,
-        color: "#000000",
+        color: "#421018",
     },
     entryDate: {
         marginBottom: 10,
-        color: "#000000",
+        color: "#421018",
     },
     entryText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: "#000000",
+        color: "#421018",
         textAlign: "center"
     },
     entryMood: {
@@ -183,7 +183,7 @@ export default StyleSheet.create({
     exerciseTitle: {
         fontSize: 24,
         fontWeight: "bold",
-        color: "#000000",
+        color: "#421018",
         textAlign: 'center',
         paddingHorizontal: 5,
         paddingVertical: 10,
@@ -196,7 +196,7 @@ export default StyleSheet.create({
         justifyContent: "center"
     },
     exerciseOpac: {
-        backgroundColor: "#000000",
+        backgroundColor: "#421018",
         borderRadius: 5,
         marginTop: 10,
         marginBottom: 50,
@@ -217,8 +217,8 @@ export default StyleSheet.create({
         justifyContent: "center",
         alignSelf: "center",
     },
-    exerciseSteps:{
-        width: windowWidth *.75,
+    exerciseSteps: {
+        width: windowWidth * .75,
         alignSelf: "center",
         marginBottom: 50
     },
