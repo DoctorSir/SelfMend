@@ -1,53 +1,74 @@
-import React from "react";
-import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
-import Logo from "../../components/Logo";
-import HubStyling from "../../CSS/HubStyling";
-import BreathingBubble from "../../components/BreathingBubble";
+import React, { useState } from 'react';
+import { SafeAreaView, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { collection, query, orderBy, getDocs } from 'firebase/firestore';
+import { db } from '../../services/firebaseConfig';
+import { useFocusEffect } from '@react-navigation/native';
+
+import HubStyling from '../../CSS/HubStyling';
+
+export default function ExerciseScreen() {
+    const navigation = useNavigation();
+    const [exercises, setExercises] = useState([]);
+
+    const fetchExercises = async () => {
+        const entriesQuery = query(collection(db, "Exercises"), orderBy("exerciseName", "asc"));
+
+        try {
+            const querySnapshot = await getDocs(entriesQuery);
+            const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setExercises(data);
+        } catch (error) {
+            console.error('Error fetching exercises:', error);
+        }
+    };
+
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchExercises();
+        }, [])
+    );
+
+    const getSteps = (exercise) => {
+        const stepKeys = Object.keys(exercise.steps);
+
+        if (stepKeys.length > 0) {
+            stepKeys.sort((a, b) => {
+                const aNum = parseInt(a.replace('Step ', ''));
+                const bNum = parseInt(b.replace('Step ', ''));
+                return aNum - bNum;
+            });
+
+            return stepKeys.map((key) => exercise.steps[key]);
+        } else {
+            return [];
+        }
+    };
 
 
-export default function ExerciseScreen({ navigation }) {
     return (
-      <SafeAreaView style={HubStyling.exerciseContainer}>
-        <View style={HubStyling.exerciseHeader}>
-          <Text style={HubStyling.exerciseTitle}>Mental Health Exercises</Text>
-        </View>
+        <SafeAreaView style={HubStyling.exerciseContainer}>
+            <View style={HubStyling.exerciseHeader}>
+                <Text style={HubStyling.exerciseTitle}>Mental Health Exercises</Text>
+            </View>
 
-        <View style={HubStyling.exerciseAction}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("DBS")}
-            style={HubStyling.exerciseOpac}
-          >
-            <Text style={HubStyling.exerciseOpacText}>
-              Diaphragmatic Breathing
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => navigation.navigate("FSE")}
-            style={HubStyling.exerciseOpac}
-          >
-            <Text style={HubStyling.exerciseOpacText}>4-7-8 Breathing</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => navigation.navigate("PMR")}
-            style={HubStyling.exerciseOpac}
-          >
-            <Text style={HubStyling.exerciseOpacText}>
-              Progressive Muscle Relaxation
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => navigation.navigate("BBP")}
-            style={HubStyling.exerciseOpac}
-          >
-            <Text style={HubStyling.exerciseOpacText}>
-              Breathing Bubble
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+            <ScrollView contentContainerStyle={HubStyling.exerciseAction}>
+                {exercises.map((exercise) => (
+                    <TouchableOpacity
+                        style={HubStyling.exerciseOpac}
+                        key={exercise.id}
+                        onPress={() =>
+                            navigation.navigate('Exercise Details', {
+                                exerciseName: exercise.exerciseName,
+                                videoId: exercise.videoId,
+                                steps: getSteps(exercise),
+                            })
+                        }
+                    >
+                        <Text style={HubStyling.exerciseOpacText}>{exercise.exerciseName}</Text>
+                    </TouchableOpacity>
+                ))}
+            </ScrollView>
+        </SafeAreaView>
     );
 }
-

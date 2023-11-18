@@ -13,46 +13,33 @@ import UpdatePasswordScreen from './screens/updateAccount/UpdatePassword';
 import FindHelp from './screens/hub/FindHelp';
 import JournalEntry from './screens/hub/Journal';
 import JournalEntryList from "./screens/hub/ListJournals";
-import DBS from "./screens/exercises/DBS";
-import FSE from "./screens/exercises/FSE";
-import PMR from "./screens/exercises/PMR";
-import BBP from "./screens/exercises/BBP";
-
+import ExerciseDetails from './screens/hub/ExerciseDetails';
+import AddExercise from './screens/hub/AddExercise';
 
 // create new stack navigator to go between screens
 const Stack = createStackNavigator();
 
 export default function App() {
     return (
-      <NavigationContainer>
-        <StatusBar style="auto" />
-        <Stack.Navigator
-          initalRouteName="Login"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Create Account" component={CreateAccountScreen} />
-          <Stack.Screen
-            name="Forgot Password"
-            component={ForgotPasswordScreen}
-          />
+        <NavigationContainer>
+            <StatusBar style="auto" />
+            <Stack.Navigator initalRouteName="Login" screenOptions={{ headerShown: false }}>
 
-          <Stack.Screen name="Hub Navigator" component={HubNavigator} />
-          <Stack.Screen name="Find Help" component={FindHelp} />
-          <Stack.Screen name="Entry List" component={JournalEntryList} />
-          <Stack.Screen name="New Entry" component={JournalEntry} />
+                <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="Create Account" component={CreateAccountScreen} />
+                <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
 
-          <Stack.Screen
-            name="Update Password"
-            component={UpdatePasswordScreen}
-          />
-          <Stack.Screen name="Update Email" component={UpdateEmailScreen} />
+                <Stack.Screen name="Hub Navigator" component={HubNavigator} />
+                <Stack.Screen name="Find Help" component={FindHelp} />
+                <Stack.Screen name="Entry List" component={JournalEntryList} />
+                <Stack.Screen name="New Entry" component={JournalEntry} />
 
-          <Stack.Screen name="DBS" component={DBS} />
-          <Stack.Screen name="FSE" component={FSE} />
-          <Stack.Screen name="PMR" component={PMR} />
-          <Stack.Screen name="BBP" component={BBP} />
-        </Stack.Navigator>
-      </NavigationContainer>
+                <Stack.Screen name="Update Password" component={UpdatePasswordScreen} />
+                <Stack.Screen name="Update Email" component={UpdateEmailScreen} />
+
+                <Stack.Screen name="Exercise Details" component={ExerciseDetails} />
+                <Stack.Screen name="Add Exercise" component={AddExercise} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }

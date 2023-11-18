@@ -5,8 +5,6 @@ import { auth } from '../../services/firebaseConfig';
 import Logo from "../../components/Logo";
 import Settings from "../../CSS/SettingsStyling";
 
-
-
 export default function SettingsScreen({ navigation }) {
 
     const handleDeleteAccount = () => {
@@ -53,7 +51,7 @@ export default function SettingsScreen({ navigation }) {
             </View>
 
             <View style={Settings.profile}>
-                <Logo/>
+                <Logo />
                 <Text style={Settings.profileName}>{auth.currentUser.displayName}</Text>
                 <Text style={Settings.profileEmail}>{auth.currentUser.email}</Text>
             </View>
@@ -63,6 +61,11 @@ export default function SettingsScreen({ navigation }) {
             </SafeAreaView>
 
             <SafeAreaView style={Settings.settingsActions}>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Add Exercise')} style={Settings.settingsOpac}>
+                    <Text style={Settings.settingsText}>Create Exercise</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity onPress={() => navigation.navigate('Update Email')} style={Settings.settingsOpac}>
                     <Text style={Settings.settingsText}>Change Email</Text>
                 </TouchableOpacity>

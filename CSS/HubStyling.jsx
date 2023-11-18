@@ -136,7 +136,6 @@ export default StyleSheet.create({
         flex: 1
     },
     exerciseHeader: {
-        padding: 16,
         flexDirection: "column",
         alignItems: "center",
         backgroundColor: "#FCF6EE",
@@ -149,10 +148,9 @@ export default StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: 5,
         paddingVertical: 10,
-        marginBottom: 30
     },
     exerciseAction: {
-        marginTop: 50,
+        marginTop: 25,
         alignItems: "center",
         backgroundColor: "#FCF6EE",
         justifyContent: "center"
@@ -160,8 +158,7 @@ export default StyleSheet.create({
     exerciseOpac: {
         backgroundColor: "#5194B8",
         borderRadius: 50,
-        marginTop: 1,
-        marginBottom: 50,
+        marginBottom: 20,
         paddingHorizontal: 30,
         paddingVertical: 20,
         width: windowWidth * .72,
@@ -174,6 +171,9 @@ export default StyleSheet.create({
         color: "#FCF6EE",
         textTransform: "uppercase",
         textAlign: 'center'
+    },
+    exerciseDetailsScrollContainer:{
+        marginTop: 20
     },
     ytVideo: {
         flex: 1,
