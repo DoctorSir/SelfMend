@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
 import { collection, addDoc } from "firebase/firestore";
@@ -17,12 +17,24 @@ const getCurrentDateAndTime = () => {
     let hours = new Date().getHours(); //Current Hours
     let min = new Date().getMinutes(); //Current Minutes
     let sec = new Date().getSeconds(); //Current Seconds
+
+    if (date < 10) date = "0" + date;
+    if (month < 10) month = "0" + month;
+
+    if (hours < 10) hours = "0" + hours;
+    if (min < 10) min = "0" + min;
+    if (sec < 10) sec = "0" + sec;
+
     return (month + '/' + date + '/' + year + ' at ' + hours + ':' + min + ':' + sec);
 }
 
 export default function JournalEntryPage({ navigation }) {
     const [journalText, setJournalText] = useState("");
     const [journalMood, setJournalMood] = useState("");
+
+    useEffect(() => {
+        console.log(getCurrentDateAndTime());
+    }, []);
 
     const saveEntry = () => {
 
