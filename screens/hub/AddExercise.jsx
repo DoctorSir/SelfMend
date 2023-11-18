@@ -55,7 +55,7 @@ export default function ExerciseAddPage({ navigation }) {
     };
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={Settings.container}>
             <ScrollView>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -68,7 +68,7 @@ export default function ExerciseAddPage({ navigation }) {
                         <TextInput
                             mode='flat'
                             activeUnderlineColor="#5194b8"
-                            placeholderTextColor="#000000"
+                            placeholderTextColor="#421018"
                             placeholder="Enter exercise name"
                             onChangeText={(text) => setExerciseName(text)}
                             style={Settings.addExerciseInput}
@@ -77,7 +77,7 @@ export default function ExerciseAddPage({ navigation }) {
                         <TextInput
                             mode='flat'
                             activeUnderlineColor="#5194b8"
-                            placeholderTextColor="#000000"
+                            placeholderTextColor="#421018"
                             placeholder="Enter number of steps"
                             onChangeText={(text) => setNumSteps(parseInt(text, 10) || 0)}
                             keyboardType="numeric"
@@ -89,7 +89,7 @@ export default function ExerciseAddPage({ navigation }) {
                         <TextInput
                             mode='flat'
                             activeUnderlineColor="#5194b8"
-                            placeholderTextColor="#000000"
+                            placeholderTextColor="#421018"
                             placeholder="Enter video ID"
                             onChangeText={(text) => setVideoId(text)}
                             style={Settings.addExerciseInput}
