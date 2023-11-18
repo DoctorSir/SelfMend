@@ -1,11 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, Text, TouchableOpacity, Alert } from "react-native";
 import { deleteUser, signOut } from "firebase/auth";
-import { auth } from '../../services/firebaseConfig';
+import { auth, db } from '../../services/firebaseConfig';
 import Logo from "../../components/Logo";
 import Settings from "../../CSS/SettingsStyling";
+import { collection, query, getDocs } from 'firebase/firestore';
 
 export default function SettingsScreen({ navigation }) {
+    const [hasDoctorRole, setHasDoctorRole] = useState(false);
+
+    useEffect(() => {
+        const fetchUserRole = async () => {
+            try {
+                const user = auth.currentUser;
+                const userID = user.uid;
+
+                const permissionedUsers = await getPermissionedUsers();
+                const currentUserRole = permissionedUsers.find(item => item.id === userID);
+
+                setHasDoctorRole(currentUserRole && currentUserRole.role === 'doctor');
+            } catch (error) {
+                console.error('Error fetching user role:', error);
+            }
+        };
+
+        fetchUserRole();
+    }, []);
+
+    const getPermissionedUsers = async () => {
+        const entriesQuery = query(
+            collection(db, "additionalUserRoles"),
+        );
+
+        try {
+            const querySnapshot = await getDocs(entriesQuery);
+            const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            return data;
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const handleDeleteAccount = () => {
         Alert.alert(
@@ -62,9 +96,11 @@ export default function SettingsScreen({ navigation }) {
 
             <SafeAreaView style={Settings.settingsActions}>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Add Exercise')} style={Settings.settingsOpac}>
-                    <Text style={Settings.settingsText}>Create Exercise</Text>
-                </TouchableOpacity>
+                {hasDoctorRole && (
+                    <TouchableOpacity onPress={() => navigation.navigate('Add Exercise')} style={Settings.settingsOpac}>
+                        <Text style={Settings.settingsText}>Create Exercise</Text>
+                    </TouchableOpacity>
+                )}
 
                 <TouchableOpacity onPress={() => navigation.navigate('Update Email')} style={Settings.settingsOpac}>
                     <Text style={Settings.settingsText}>Change Email</Text>
@@ -85,4 +121,3 @@ export default function SettingsScreen({ navigation }) {
         </SafeAreaView>
     );
 }
-

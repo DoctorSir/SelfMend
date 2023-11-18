@@ -8,7 +8,7 @@ export default function ExerciseDetails({ route }) {
     const { exerciseName, videoId, steps } = route.params;
 
     return (
-        <SafeAreaView style={HubStyling.exerciseContainer}>
+        <SafeAreaView style={HubStyling.container}>
             <View style={HubStyling.exerciseHeader}>
                 <Text style={HubStyling.exerciseTitle}>{exerciseName}</Text>
             </View>
