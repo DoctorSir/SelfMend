@@ -68,6 +68,7 @@ export default function MoodTrackingPage() {
             <SelectDropdown
                 data={categories}
                 buttonStyle={Hub.dropdown}
+                buttonTextStyle={Hub.dropdownText}
                 onSelect={(selectedItem, index) => {
                     handleCategoryChange(selectedItem.value);
                 }}
@@ -86,6 +87,7 @@ export default function MoodTrackingPage() {
                     <SelectDropdown
                         data={subcategories[selectedCategory]}
                         buttonStyle={Hub.dropdown}
+                        buttonTextStyle={Hub.dropdownText}
                         onSelect={(selectedItem, index) => {
                             handleSubcategoryChange(selectedItem.value);
                         }}
@@ -106,6 +108,7 @@ export default function MoodTrackingPage() {
                     <SelectDropdown
                         data={items[selectedSubcategory]}
                         buttonStyle={Hub.dropdown}
+                        buttonTextStyle={Hub.dropdownText}
                         onSelect={(selectedItem, index) => {
                             setSelectedItem(selectedItem.value);
                         }}
