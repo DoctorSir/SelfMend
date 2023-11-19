@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import ExerciseScreen from '../screens/hub/Exercise'
 import LandingScreen from '../screens/hub/Landing'
-import MoodScreen from '../screens/hub/MoodTracking'
+import MoodScreen from '../screens/hub/MoodChart'
 import SettingsScreen from '../screens/hub/Settings'
 import JournalScreen from '../screens/hub/ListJournals'
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, FlatList, SafeAreaView } from 'react-native';
 import { FAB } from 'react-native-paper';
 import { collection, query, where, orderBy, getDocs } from 'firebase/firestore';
