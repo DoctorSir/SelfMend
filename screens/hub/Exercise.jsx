@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { collection, query, orderBy, getDocs } from 'firebase/firestore';
+import { collection, query, orderBy, getDocs, deleteDoc } from 'firebase/firestore';
 import { db } from '../../services/firebaseConfig';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -44,7 +44,19 @@ export default function ExerciseScreen() {
             return [];
         }
     };
-
+    
+    // const handleDeleteExercise = async (exerciseId) => {
+    //     try {
+    //         // Delete the exercise document from Firestore using the exerciseId
+    //         // ...
+    //         // Update with actual implementation...
+    
+    //         // After successful deletion, fetch the updated list of exercises
+    //         fetchExercises();
+    //     } catch (error) {
+    //         console.error('Error deleting exercise:', error);
+    //     }
+    // };
 
     return (
         <SafeAreaView style={HubStyling.exerciseContainer}>
@@ -54,9 +66,14 @@ export default function ExerciseScreen() {
 
             <ScrollView contentContainerStyle={HubStyling.exerciseAction}>
                 {exercises.map((exercise) => (
+                                    <View key={exercise.id}>
+
                     <TouchableOpacity
                         style={HubStyling.exerciseOpac}
-                        key={exercise.id}
+                       
+                        // Uncomment line below to include exercise ID for deleting exercises  
+                        // key={exercise.id} 
+
                         onPress={() =>
                             navigation.navigate('Exercise Details', {
                                 exerciseName: exercise.exerciseName,
@@ -67,6 +84,15 @@ export default function ExerciseScreen() {
                     >
                         <Text style={HubStyling.exerciseOpacText}>{exercise.exerciseName}</Text>
                     </TouchableOpacity>
+
+                    {/* New delete button
+                    <TouchableOpacity
+                        style={HubStyling.exerciseDeleteOpac}
+                        onPress={() => handleDeleteExercise(exercise.id)}
+                    >
+                        <Text style={HubStyling.exerciseDeleteText}>Delete</Text>
+                    </TouchableOpacity> */}
+                    </View>
                 ))}
             </ScrollView>
         </SafeAreaView>

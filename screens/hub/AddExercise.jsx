@@ -1,4 +1,3 @@
-// ExerciseAddPage.js
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';

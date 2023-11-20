@@ -190,5 +190,27 @@ export default StyleSheet.create({
         textAlign: "center",
         marginBottom: 10,
         fontWeight: "bold"
-    }
+    },
+    
+exerciseDeleteOpac: {
+    backgroundColor: "#ff0000",
+    borderRadius: 50,
+    marginTop: 10,
+    marginBottom: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 10,
+    paddingBottom: 10,
+    // width: width * .6,
+    height: 50,
+    justifyContent: "center",
+    borderWidth: 2,
+},
+exerciseDeleteText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#FFFFFF",
+    textTransform: "uppercase",
+    textAlign: 'center'
+},
 });
