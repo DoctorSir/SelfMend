@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
+  Platform,
 } from "react-native";
 import { Text, TextInput } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 import { auth } from "../../services/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import * as Animatable from "react-native-animatable"; // Import the Animatable library
+import * as Animatable from "react-native-animatable";
+import { Vibration } from "react-native";
+
 
 import Logo from "../../components/Logo";
 import Theme from "../../CSS/AppTheme";
@@ -18,6 +22,23 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isFirstError, setIsFirstError] = useState(true); // New state variable
+
+  useEffect(() => {
+    // Load the last used email from AsyncStorage
+    const loadLastUsedEmail = async () => {
+      try {
+        const storedEmail = await AsyncStorage.getItem("lastUsedEmail");
+        if (storedEmail) {
+          setEmail(storedEmail);
+        }
+      } catch (error) {
+        console.error("Error loading last used email", error);
+      }
+    };
+
+    loadLastUsedEmail();
+  }, []); // Run this effect only once on component mount
 
   const handleLogin = async () => {
     try {
@@ -27,14 +48,31 @@ export default function LoginScreen({ navigation }) {
       setPassword("");
       navigation.navigate("Hub Navigator");
     } catch (error) {
-      setError("Sign In Failed! Check Email and Password");
+      setError("Sign In Failed. Please check your Email and Password.");
+      // Vibrate on every error
+      Vibration.vibrate();
 
-      // Flash animation for the error text
-      errorTextRef.current && errorTextRef.current.shake(); // Use the shake animation, you can choose others from the library
+      errorTextRef.current && errorTextRef.current.shake();
     }
   };
+  const errorTextRef = React.createRef();
 
-  const errorTextRef = React.createRef(); // Create a reference for the error text
+  const handleEmailChange = (text) => {
+    setEmail(text);
+  };
+
+  const handlePasswordChange = (text) => {
+    setPassword(text);
+  };
+
+  const handleRememberEmail = async () => {
+    // Save the email to AsyncStorage
+    try {
+      await AsyncStorage.setItem("lastUsedEmail", email);
+    } catch (error) {
+      console.error("Error saving last used email", error);
+    }
+  };
 
   return (
     <SafeAreaView style={Theme.container}>
@@ -49,10 +87,11 @@ export default function LoginScreen({ navigation }) {
             style={Theme.userInput}
             placeholder="Email"
             placeholderTextColor={"#000000"}
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={handleEmailChange}
             value={email}
             mode="flat"
             activeUnderlineColor="#5194b8"
+            returnKeyType="next"
           />
 
           <TextInput
@@ -60,13 +99,17 @@ export default function LoginScreen({ navigation }) {
             placeholder="Password"
             placeholderTextColor={"#000000"}
             secureTextEntry
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={handlePasswordChange}
             value={password}
             mode="flat"
             activeUnderlineColor="#5194b8"
+            onSubmitEditing={() => {
+              handleRememberEmail();
+              handleLogin();
+            }}
+            returnKeyType="go"
           />
 
-          {/* Wrap the error text with Animatable.View for animations */}
           <Animatable.View ref={errorTextRef}>
             <Text style={Theme.errorText}>{error}</Text>
           </Animatable.View>

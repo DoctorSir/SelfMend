@@ -5,6 +5,7 @@ import { auth, db } from '../../services/firebaseConfig';
 import Logo from "../../components/Logo";
 import Settings from "../../CSS/SettingsStyling";
 import { collection, query, getDocs } from 'firebase/firestore';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SettingsScreen({ navigation }) {
     const [hasDoctorRole, setHasDoctorRole] = useState(false);
@@ -70,13 +71,23 @@ export default function SettingsScreen({ navigation }) {
         }
     };
 
-    const handleLogout = () => {
-        signOut(auth).then(() => {
-            navigation.navigate("Login")
-        }).catch((error) => {
-            console.log(error)
+    const handleLogout = async () => {
+      // Save the last used email to AsyncStorage before signing out
+      try {
+        await AsyncStorage.setItem("lastUsedEmail", auth.currentUser.email);
+      } catch (error) {
+        console.error("Error saving last used email before logout", error);
+      }
+
+      // Sign out and navigate to the login screen
+      signOut(auth)
+        .then(() => {
+          navigation.navigate("Login");
         })
-    }
+        .catch((error) => {
+          console.error("Error during logout", error);
+        });
+    };
 
     return (
         <SafeAreaView style={Settings.container}>
