@@ -34,6 +34,13 @@ export default StyleSheet.create({
     },
     errorText: {
         color: 'red',
-        marginTop: 16,
-    }
+        marginTop: 1,
+    },
+    loginContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#FCF6EE'
+    },
+
 })
