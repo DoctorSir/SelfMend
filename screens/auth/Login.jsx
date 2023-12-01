@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [isFirstError, setIsFirstError] = useState(true); // New state variable
+  const [shakeKey, setShakeKey] = useState(0); // Add shakeKey state
 
   useEffect(() => {
     // Load the last used email from AsyncStorage
@@ -49,6 +49,10 @@ export default function LoginScreen({ navigation }) {
       navigation.navigate("Hub Navigator");
     } catch (error) {
       setError("Sign In Failed. Please check your Email and Password.");
+
+      // Shake the error text on every error
+      setShakeKey((prevKey) => prevKey + 1);
+
       // Vibrate on every error
       Vibration.vibrate();
 
@@ -79,7 +83,7 @@ export default function LoginScreen({ navigation }) {
       <Logo style={Auth.logo} />
       <Text style={Theme.title}>SelfMend Sign In</Text>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : ""}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={Theme.loginContainer}
       >
         <ScrollView contentContainerStyle={Theme.scroll}>
@@ -110,7 +114,7 @@ export default function LoginScreen({ navigation }) {
             returnKeyType="go"
           />
 
-          <Animatable.View ref={errorTextRef}>
+          <Animatable.View animation="shake" key={shakeKey} ref={errorTextRef}>
             <Text style={Theme.errorText}>{error}</Text>
           </Animatable.View>
 
