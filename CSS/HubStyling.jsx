@@ -123,6 +123,9 @@ export default StyleSheet.create({
     entryMood: {
         textAlign: 'right'
     },
+    entryButtons: {
+        flexDirection: 'row'
+    },
     fab: {
         position: 'absolute',
         margin: 16,
