@@ -38,7 +38,7 @@ const getCurrentDateAndTime = () => {
     return (month + '/' + date + '/' + year + ' at ' + hours + ':' + min + ':' + sec);
 }
 
-export default function MoodTrackingPage() {
+export default function MoodTrackingPage({ navigation }) {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSubcategory, setSelectedSubcategory] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
@@ -46,6 +46,7 @@ export default function MoodTrackingPage() {
     const saveEntry = () => {
         // Call the function to save the journal entry to Firestore
         writeJournalEntryToFirebase(selectedItem);
+        navigation.navigate("Hub Navigator");
     };
 
     const handleCategoryChange = (category) => {
