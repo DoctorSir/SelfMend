@@ -16,9 +16,10 @@ export default function ExerciseDetails({ route }) {
             <ScrollView style={HubStyling.exerciseDetailsScrollContainer}>
                 <View style={HubStyling.exerciseSteps}>
                     {steps.map((step, index) => (
-                        <Text key={index} style={HubStyling.exerciseStep}>
-                            {`${index + 1}. ${step}`}
-                        </Text>
+                        <View key={index} style={HubStyling.stepContainer}>
+                            <Text style={HubStyling.stepText}>{`${index + 1}.`}</Text>
+                            <Text style={HubStyling.exerciseStep}>{step}</Text>
+                        </View>
                     ))}
                 </View>
 

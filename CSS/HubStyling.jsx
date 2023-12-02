@@ -187,7 +187,7 @@ export default StyleSheet.create({
         marginBottom: 50
     },
     exerciseStep: {
-        textAlign: "center",
+        textAlign: "left",
         marginBottom: 10,
         fontWeight: "bold"
     },
@@ -201,7 +201,6 @@ export default StyleSheet.create({
         paddingRight: 30,
         paddingTop: 10,
         paddingBottom: 10,
-        // width: width * .6,
         height: 50,
         justifyContent: "center",
         borderWidth: 2,
@@ -224,4 +223,13 @@ export default StyleSheet.create({
         marginRight: 18,
         margin: 2
     },
+    stepContainer: {
+        flexDirection: 'row',
+        alignItems: 'flex-start', // Align items to the start of the container
+        marginBottom: 10, // Add some margin between steps
+      },
+      stepText: {
+        marginRight: 5, // Add some space between step number and text
+      },
+
 });

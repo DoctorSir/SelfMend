@@ -108,8 +108,8 @@ export default function SettingsScreen({ navigation }) {
             <SafeAreaView style={Settings.settingsActions}>
 
                 {hasDoctorRole && (
-                    <TouchableOpacity onPress={() => navigation.navigate('Add Exercise')} style={Settings.settingsOpac}>
-                        <Text style={Settings.settingsText}>Create Exercise</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Manage Exercises')} style={Settings.settingsOpac}>
+                        <Text style={Settings.settingsText}>Manage Exercises</Text>
                     </TouchableOpacity>
                 )}
 

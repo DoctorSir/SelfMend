@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../services/firebaseConfig';
-import Settings from "../../CSS/SettingsStyling";
+import { auth, db } from '../../../services/firebaseConfig';
+import Settings from "../../../CSS/SettingsStyling";
 
 export default function ExerciseAddPage({ navigation }) {
     const [exerciseName, setExerciseName] = useState('');
@@ -22,6 +22,7 @@ export default function ExerciseAddPage({ navigation }) {
             exerciseName: exerciseName,
             videoId: videoId,
             steps: Object.fromEntries(steps.map((step, index) => [`Step ${index + 1}`, step])),
+            uid: auth.currentUser.uid
         };
 
         await addDoc(collection(db, 'Exercises'), exerciseData);

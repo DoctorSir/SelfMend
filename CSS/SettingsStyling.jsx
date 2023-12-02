@@ -111,5 +111,17 @@ export default StyleSheet.create({
         color: 'red',
         marginTop: 16,
         alignSelf: "center"
+    },
+    deleteExerOpac: {
+        alignSelf: "center",
+        width: width * .5,
+        backgroundColor: "#ff0000",
+        borderRadius: 50,
+        paddingLeft: 30,
+        paddingRight: 30,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderWidth: 2,
+        borderColor: "#421018"
     }
 })

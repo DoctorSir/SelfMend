@@ -14,8 +14,11 @@ import FindHelp from './screens/hub/FindHelp';
 import JournalEntry from './screens/hub/Journal';
 import JournalEntryList from "./screens/hub/ListJournals";
 import ExerciseDetails from './screens/hub/ExerciseDetails';
-import AddExercise from './screens/hub/AddExercise';
+
 import MoodTracking from './screens/hub/MoodTracking';
+import ShowExercises from "./screens/hub/ExerciseManagement/ShowExercises"
+import AddExercise from './screens/hub/ExerciseManagement/AddExercise';
+import ModifyExercise from "./screens/hub/ExerciseManagement/ModifyExercise";
 
 // create new stack navigator to go between screens
 const Stack = createStackNavigator();
@@ -39,7 +42,10 @@ export default function App() {
                 <Stack.Screen name="Update Email" component={UpdateEmailScreen} />
 
                 <Stack.Screen name="Exercise Details" component={ExerciseDetails} />
+                
+                <Stack.Screen name="Manage Exercises" component={ShowExercises} />
                 <Stack.Screen name="Add Exercise" component={AddExercise} />
+                <Stack.Screen name="Modify Exercise" component={ModifyExercise} />
 
                 <Stack.Screen name="New Mood" component={MoodTracking} />
             </Stack.Navigator>

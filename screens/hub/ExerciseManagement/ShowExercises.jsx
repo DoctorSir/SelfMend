@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { FAB } from "react-native-paper"
 import { useNavigation } from '@react-navigation/native';
-import { collection, query, orderBy, getDocs } from 'firebase/firestore';
-import { db } from '../../services/firebaseConfig';
+import { collection, query, orderBy, getDocs, where } from 'firebase/firestore';
+import { auth, db } from '../../../services/firebaseConfig';
 import { useFocusEffect } from '@react-navigation/native';
 
-import HubStyling from '../../CSS/HubStyling';
+import HubStyling from '../../../CSS/HubStyling';
 
-export default function ExerciseScreen() {
+export default function ShowExercises() {
     const navigation = useNavigation();
     const [exercises, setExercises] = useState([]);
 
     const fetchExercises = async () => {
-        const entriesQuery = query(collection(db, "Exercises"), orderBy("exerciseName", "asc"));
+        const user = auth.currentUser;
+        const entriesQuery = query(collection(db, "Exercises"), where("uid", "==", user.uid), orderBy("exerciseName", "asc"));
 
         try {
             const querySnapshot = await getDocs(entriesQuery);
@@ -48,7 +50,7 @@ export default function ExerciseScreen() {
     return (
         <SafeAreaView style={HubStyling.exerciseContainer}>
             <View style={HubStyling.exerciseHeader}>
-                <Text style={HubStyling.exerciseTitle}>Mental Health Exercises</Text>
+                <Text style={HubStyling.exerciseTitle}>Exercise Management</Text>
             </View>
 
             <ScrollView contentContainerStyle={HubStyling.exerciseAction}>
@@ -59,10 +61,11 @@ export default function ExerciseScreen() {
                             style={HubStyling.exerciseOpac}
 
                             onPress={() =>
-                                navigation.navigate('Exercise Details', {
+                                navigation.navigate('Modify Exercise', {
                                     exerciseName: exercise.exerciseName,
                                     videoId: exercise.videoId,
                                     steps: getSteps(exercise),
+                                    documentID: exercise.id
                                 })
                             }
                         >
@@ -71,6 +74,13 @@ export default function ExerciseScreen() {
                     </View>
                 ))}
             </ScrollView>
+            <FAB
+                style={HubStyling.fab}
+                icon="plus"
+                color="#FCF6EE"
+                onPress={() => navigation.navigate('Add Exercise')}
+            />
+
         </SafeAreaView>
     );
 }
