@@ -4,6 +4,7 @@ import { Text, TextInput } from 'react-native-paper';
 
 import { auth } from '../../services/firebaseConfig';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import KeyboardAvoidingComponent from '../../components/KeboardAvoidingComponent';
 
 import Logo from '../../components/Logo';
 import Theme from '../../CSS/AppTheme';
@@ -57,7 +58,7 @@ export default function SignupScreen({ navigation }) {
     const handleSignup = async () => {
         if (firstName !== "" && lastName !== "" && email !== "" & password !== "" & confirmPassword !== "") {
             try {
-                
+
                 await createUserWithEmailAndPassword(auth, email, password)
                 await updateProfile(auth.currentUser, { displayName: `${firstName} ${lastName}` }).catch(
                     (err) => console.log(err)
@@ -68,10 +69,10 @@ export default function SignupScreen({ navigation }) {
             } catch (error) {
                 console.log(error);
                 setError('Account Creation failed! Please try again');
-            }finally{
-                auth.currentUser.reload() 
+            } finally {
+                auth.currentUser.reload()
             }
-    
+
 
         }
 
@@ -80,67 +81,70 @@ export default function SignupScreen({ navigation }) {
 
     return (
         <SafeAreaView style={Theme.container}>
+            <KeyboardAvoidingComponent style={Auth.keyboardAdj}>
+                <Logo style={Auth.logo} />
 
-            <Logo style={Auth.logo} />
+                <Text style={Theme.title}>SelfMend Sign Up</Text>
 
-            <Text style={Theme.title}>SelfMend Sign Up</Text>
+                <TextInput
+                    placeholder="First Name"
+                    placeholderTextColor={"#000000"}
+                    onChangeText={(text) => setFirstName(text)}
+                    onBlur={validateFName}
+                    value={firstName}
+                    style={Theme.userInput}
+                    activeUnderlineColor="#5194b8"
+                />
 
-            <TextInput
-                placeholder="First Name"
-                placeholderTextColor={"#000000"}
-                onChangeText={(text) => setFirstName(text)}
-                onBlur={validateFName}
-                value={firstName}
-                style={Theme.userInput}
-                activeUnderlineColor="#5194b8"
-            />
+                <TextInput
+                    placeholder="Last Name"
+                    placeholderTextColor={"#000000"}
+                    onChangeText={(text) => setLastName(text)}
+                    onBlur={validateLName}
+                    value={lastName}
+                    style={Theme.userInput}
+                    activeUnderlineColor="#5194b8"
+                />
 
-            <TextInput
-                placeholder="Last Name"
-                placeholderTextColor={"#000000"}
-                onChangeText={(text) => setLastName(text)}
-                onBlur={validateLName}
-                value={lastName}
-                style={Theme.userInput}
-                activeUnderlineColor="#5194b8"
-            />
+                <TextInput
+                    placeholder="Email"
+                    placeholderTextColor={"#000000"}
+                    onChangeText={(text) => setEmail(text)}
+                    onBlur={validateEmail}
+                    value={email}
+                    style={Theme.userInput}
+                    activeUnderlineColor="#5194b8"
+                />
 
-            <TextInput
-                placeholder="Email"
-                placeholderTextColor={"#000000"}
-                onChangeText={(text) => setEmail(text)}
-                onBlur={validateEmail}
-                value={email}
-                style={Theme.userInput}
-                activeUnderlineColor="#5194b8"
-            />
+                <TextInput
+                    placeholder="Password"
+                    placeholderTextColor={"#000000"}
+                    onChangeText={(text) => setPassword(text)}
+                    value={password}
+                    secureTextEntry
+                    style={Theme.userInput}
+                    activeUnderlineColor="#5194b8"
+                />
 
-            <TextInput
-                placeholder="Password"
-                placeholderTextColor={"#000000"}
-                onChangeText={(text) => setPassword(text)}
-                value={password}
-                secureTextEntry
-                style={Theme.userInput}
-                activeUnderlineColor="#5194b8"
-            />
+                <TextInput
+                    placeholder="Confirm Password"
+                    placeholderTextColor={"#000000"}
+                    onChangeText={(text) => setConfirmPassword(text)}
+                    value={confirmPassword}
+                    onBlur={validatePassword}
+                    secureTextEntry
+                    style={Theme.userInput}
+                    activeUnderlineColor="#5194b8"
+                />
 
-            <TextInput
-                placeholder="Confirm Password"
-                placeholderTextColor={"#000000"}
-                onChangeText={(text) => setConfirmPassword(text)}
-                value={confirmPassword}
-                onBlur={validatePassword}
-                secureTextEntry
-                style={Theme.userInput}
-                activeUnderlineColor="#5194b8"
-            />
+                <TouchableOpacity onPress={(handleSignup)} style={Auth.loginOpac}>
+                    <Text style={Auth.actionButtonText}>Sign Up</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={(handleSignup)} style={Auth.loginOpac}>
-                <Text style={Auth.actionButtonText}>Sign Up</Text>
-            </TouchableOpacity>
+                <Text style={Theme.errorText}>{error}</Text>
+            </KeyboardAvoidingComponent>
 
-            <Text style={Theme.errorText}>{error}</Text>
+
 
         </SafeAreaView>
     );

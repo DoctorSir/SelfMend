@@ -3,6 +3,7 @@ import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
 import { auth } from '../../services/firebaseConfig';
 import { sendPasswordResetEmail } from "firebase/auth";
+import KeyboardAvoidingComponent from '../../components/KeboardAvoidingComponent';
 
 import Logo from '../../components/Logo';
 import Theme from '../../CSS/AppTheme';
@@ -34,23 +35,26 @@ export default function ForgotPasswordScreen({ navigation }) {
 
     return (
         <SafeAreaView style={Theme.container}>
-            <Logo />
-            <Text style={Theme.title}>SelfMend Password Reset</Text>
-            <TextInput
-                placeholder="Email"
-                placeholderTextColor={"#000000"}
-                onChangeText={(text) => setEmail(text)}
-                value={email}
-                onBlur={validateEmail}
-                style={Theme.userInput}
-                activeUnderlineColor="#5194b8"
-            />
+            <KeyboardAvoidingComponent style={Auth.keyboardAdj}>
+                <Logo style={Auth.logo} />
+                <Text style={Theme.title}>SelfMend Password Reset</Text>
+                <TextInput
+                    placeholder="Email"
+                    placeholderTextColor={"#000000"}
+                    onChangeText={(text) => setEmail(text)}
+                    value={email}
+                    onBlur={validateEmail}
+                    style={Theme.userInput}
+                    activeUnderlineColor="#5194b8"
+                />
 
-            <TouchableOpacity onPress={(handlePasswordReset)} style={Auth.loginOpac}>
-                <Text style={Auth.actionButtonText}>Send Email</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={(handlePasswordReset)} style={Auth.loginOpac}>
+                    <Text style={Auth.actionButtonText}>Send Email</Text>
+                </TouchableOpacity>
 
-            <Text style={Theme.errorText}>{error}</Text>
+                <Text style={Theme.errorText}>{error}</Text>
+            </KeyboardAvoidingComponent>
+
         </SafeAreaView>
 
     );

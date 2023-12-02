@@ -1,24 +1,12 @@
 import React from 'react'
 import { Image } from 'react-native'
-import PropTypes from "prop-types"
 import logo from '../assets/MentalHealth.png'
 
 // import image from assets folder and define the size
-export default function Logo({ logoWidth, logoHeight, style }) {
+export default function Logo() {
     return (
         <Image source={logo}
-            style={[{ width: logoWidth, height: logoHeight, objectFit: "contain" }, style]}
+            style={{ width: 300, height: 300, objectFit: "contain" }}
         />
     )
 }
-
-Logo.propTypes = {
-    logoWidth: PropTypes.number.isRequired,
-    logoHeight: PropTypes.number.isRequired,
-    style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-};
-
-Logo.defaultProps = {
-    logoWidth: 300,
-    logoHeight: 300,
-};
