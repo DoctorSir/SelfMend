@@ -21,7 +21,7 @@ export default function LandingPage({ navigation }) {
 
             <Text style={HubStyling.reminderText}>{reminder}</Text>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Find Help')} style={Auth.loginOpac}>
+            <TouchableOpacity onPress={() => navigation.navigate('Find Help')} style={HubStyling.helpOpac}>
                 <Text style={Auth.actionButtonText}>Find Support Near You</Text>
             </TouchableOpacity>
         </SafeAreaView>
