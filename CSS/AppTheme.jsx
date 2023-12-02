@@ -25,16 +25,19 @@ export default StyleSheet.create({
         color: '#421018',
         fontWeight: 'bold',
         margin: 16,
+        textAlign: "center"
     },
     userInput: {
-        width: '75%',
+        alignSelf: "center",
+        width: "90%",
         height: 40,
         backgroundColor: 'none',
         marginBottom: 16,
     },
     errorText: {
+        textAlign: "center",
         color: 'red',
-        marginTop: 1,
+        margin: 1,
     },
     loginContainer: {
         flex: 1,
