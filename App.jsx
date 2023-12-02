@@ -13,6 +13,7 @@ import UpdatePasswordScreen from './screens/updateAccount/UpdatePassword';
 import FindHelp from './screens/hub/FindHelp';
 import JournalEntry from './screens/hub/Journal';
 import JournalEntryList from "./screens/hub/ListJournals";
+import EditJournal from "./screens/hub/EditJournal";
 import ExerciseDetails from './screens/hub/ExerciseDetails';
 
 import MoodTracking from './screens/hub/MoodTracking';
@@ -37,6 +38,7 @@ export default function App() {
                 <Stack.Screen name="Find Help" component={FindHelp} />
                 <Stack.Screen name="Entry List" component={JournalEntryList} />
                 <Stack.Screen name="New Entry" component={JournalEntry} />
+                <Stack.Screen name="Edit Entry" component={EditJournal} />
 
                 <Stack.Screen name="Update Password" component={UpdatePasswordScreen} />
                 <Stack.Screen name="Update Email" component={UpdateEmailScreen} />
