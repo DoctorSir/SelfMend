@@ -14,6 +14,8 @@ export default function EntryList({ navigation }) {
         const entriesQuery = query(
             collection(db, "JournalEntries"),
             where("uid", "==", auth.currentUser.uid),
+            orderBy("Text", "asc"),
+            where("Text", "!=", ""),
             orderBy("Date", "desc")
         );
 
