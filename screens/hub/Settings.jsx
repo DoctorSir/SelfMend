@@ -101,7 +101,7 @@ export default function SettingsScreen({ navigation }) {
                 <Text style={Settings.profileEmail}>{auth.currentUser.email}</Text>
             </View>
 
-            <SafeAreaView style={Settings.title}>
+            <SafeAreaView style={Settings.accountTitle}>
                 <Text style={Settings.settingsSectionText}>Account Settings</Text>
             </SafeAreaView>
 

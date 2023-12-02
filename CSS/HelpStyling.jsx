@@ -11,7 +11,7 @@ export default StyleSheet.create({
     header: {
         fontSize: 18,
         fontWeight: 'bold',
-        marginTop: 20,
+        marginTop: "10%",
         alignSelf: 'center',
         flexWrap: 'wrap',
         textAlign: 'center',

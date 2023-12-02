@@ -20,36 +20,150 @@ import MoodTracking from './screens/hub/MoodTracking';
 import ShowExercises from "./screens/hub/ExerciseManagement/ShowExercises"
 import AddExercise from './screens/hub/ExerciseManagement/AddExercise';
 import ModifyExercise from "./screens/hub/ExerciseManagement/ModifyExercise";
+import BackButton from './navigation/BackButton';
 
 // create new stack navigator to go between screens
 const Stack = createStackNavigator();
 
 export default function App() {
+
+    const headerBackgroundColor = '#FCF6EE'
+
     return (
         <NavigationContainer>
             <StatusBar style="auto" />
             <Stack.Navigator initalRouteName="Login" screenOptions={{ headerShown: false }}>
 
                 <Stack.Screen name="Login" component={LoginScreen} />
-                <Stack.Screen name="Create Account" component={CreateAccountScreen} />
-                <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
+                <Stack.Screen name="Create Account"
+                    component={CreateAccountScreen}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
+                <Stack.Screen name="Forgot Password"
+                    component={ForgotPasswordScreen}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
 
                 <Stack.Screen name="Hub Navigator" component={HubNavigator} options={{ gestureEnabled: false }} />
-                <Stack.Screen name="Find Help" component={FindHelp} />
+                <Stack.Screen name="Find Help"
+                    component={FindHelp}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
+
                 <Stack.Screen name="Entry List" component={JournalEntryList} />
-                <Stack.Screen name="New Entry" component={JournalEntry} />
-                <Stack.Screen name="Edit Entry" component={EditJournal} />
+                <Stack.Screen name="New Entry"
+                    component={JournalEntry}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
+                <Stack.Screen name="Edit Entry"
+                    component={EditJournal}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
 
-                <Stack.Screen name="Update Password" component={UpdatePasswordScreen} />
-                <Stack.Screen name="Update Email" component={UpdateEmailScreen} />
+                <Stack.Screen name="Update Password"
+                    component={UpdatePasswordScreen}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
+                <Stack.Screen name="Update Email"
+                    component={UpdateEmailScreen}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
 
-                <Stack.Screen name="Exercise Details" component={ExerciseDetails} />
+                <Stack.Screen name="Exercise Details"
+                    component={ExerciseDetails}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
 
-                <Stack.Screen name="Manage Exercises" component={ShowExercises} />
-                <Stack.Screen name="Add Exercise" component={AddExercise} />
-                <Stack.Screen name="Modify Exercise" component={ModifyExercise} />
+                <Stack.Screen name="Manage Exercises"
+                    component={ShowExercises}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
+                <Stack.Screen name="Add Exercise"
+                    component={AddExercise}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
 
-                <Stack.Screen name="New Mood" component={MoodTracking} />
+                <Stack.Screen name="Modify Exercise"
+                    component={ModifyExercise}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
+
+                <Stack.Screen name="New Mood"
+                    component={MoodTracking}
+                    options={{
+                        headerShown: true,
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerStyle: { backgroundColor: headerBackgroundColor },
+                        headerLeft: () => <BackButton />
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

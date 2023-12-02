@@ -33,6 +33,7 @@ export default StyleSheet.create({
         color: "#421018",
         fontWeight: "bold",
         margin: 24,
+        marginTop: "10%"
     },
     headerText: {
         fontSize: 16,
@@ -151,6 +152,7 @@ export default StyleSheet.create({
         justifyContent: "center"
     },
     exerciseTitle: {
+        marginTop: "10%",
         fontSize: 24,
         fontWeight: "bold",
         color: "#421018",

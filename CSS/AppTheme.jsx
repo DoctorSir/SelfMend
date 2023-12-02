@@ -45,5 +45,9 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#FCF6EE'
     },
+    headerButton: {
+        marginLeft: "10%",
+        marginBottom: "10%"
+    }
 
 })

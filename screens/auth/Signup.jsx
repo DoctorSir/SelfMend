@@ -6,6 +6,8 @@ import { auth } from '../../services/firebaseConfig';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import KeyboardAvoidingComponent from '../../components/KeboardAvoidingComponent';
 
+import BackButton from '../../navigation/BackButton';
+
 import Logo from '../../components/Logo';
 import Theme from '../../CSS/AppTheme';
 import Auth from '../../CSS/AuthStyling';

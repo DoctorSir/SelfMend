@@ -16,6 +16,16 @@ export default StyleSheet.create({
         textAlign: 'center'
     },
     title: {
+        marginTop: "10%",
+        fontSize: 24,
+        fontWeight: "bold",
+        color: "#421018",
+        textAlign: 'center',
+        paddingHorizontal: 5,
+        paddingVertical: 8,
+    },
+    accountTitle: {
+        marginTop: "20",
         fontSize: 24,
         fontWeight: "bold",
         color: "#421018",
