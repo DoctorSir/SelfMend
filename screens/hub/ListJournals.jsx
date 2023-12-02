@@ -48,6 +48,12 @@ export default function EntryList({ navigation }) {
         }
     };
 
+    const removeSeconds = (dateTime) => {
+        const indexOfAt = dateTime.indexOf("at");
+        const minuteTime = dateTime.slice(0, indexOfAt);
+        return minuteTime
+    }
+
     useFocusEffect(
         React.useCallback(() => {
             fetchEntries();
@@ -66,19 +72,22 @@ export default function EntryList({ navigation }) {
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View style={Hub.entry}>
-                        <Text style={Hub.entryDate}>{item.Date}</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: "space-between" }}>
+
+                            <Text style={Hub.entryDate}>{removeSeconds(item.Date)}</Text>
+
+                            <View style={Hub.EntryIcons}>
+                                <TouchableOpacity onPress={() => handleEditEntry(item.id)} >
+                                    <Icon name="edit" size={24} color="#421018" style={{paddingRight: "3%"}} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleDeleteEntry(item.id)}>
+                                    <Icon name="delete" size={24} color="#C70039" />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
                         <Text style={Hub.entryText}>{item.Text}</Text>
                         <Text style={Hub.entryMood}>Feeling {item.Mood}</Text>
-
-                        {/* Add Edit and Delete buttons */}
-                        <View style={{ flexDirection: 'row' }}>
-                            <TouchableOpacity onPress={() => handleEditEntry(item.id)} style={{ paddingRight: 25 }}>
-                                <Icon name="edit" size={24} color="#007BFF" />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => handleDeleteEntry(item.id)}>
-                                <Icon name="delete" size={24} color="#FF3B30" />
-                            </TouchableOpacity>
-                        </View>
                     </View>
                 )}
             />

@@ -36,7 +36,7 @@ export default StyleSheet.create({
     },
     errorText: {
         textAlign: "center",
-        color: 'red',
+        color: '#C70039',
         margin: 1,
     },
     loginContainer: {

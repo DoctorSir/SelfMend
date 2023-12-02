@@ -61,7 +61,7 @@ export default StyleSheet.create({
         borderWidth: 2,
     },
     deleteOpac: {
-        backgroundColor: "#ff0000",
+        backgroundColor: "#C70039",
         borderRadius: 50,
         marginTop: 10,
         marginBottom: 20,
@@ -108,14 +108,14 @@ export default StyleSheet.create({
         textAlign: "center"
     },
     errorText:{
-        color: 'red',
+        color: '#C70039',
         marginTop: 16,
         alignSelf: "center"
     },
     deleteExerOpac: {
         alignSelf: "center",
         width: width * .5,
-        backgroundColor: "#ff0000",
+        backgroundColor: "#C70039",
         borderRadius: 50,
         paddingLeft: 30,
         paddingRight: 30,

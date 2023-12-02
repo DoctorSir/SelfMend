@@ -30,7 +30,7 @@ export default StyleSheet.create({
         marginTop: 20,
         fontSize: 22,
         textAlign: "center",
-        color: "red"
+        color: "#C70039"
     },
     listItem988Desc: {
         fontSize: 15,

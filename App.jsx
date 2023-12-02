@@ -34,7 +34,7 @@ export default function App() {
                 <Stack.Screen name="Create Account" component={CreateAccountScreen} />
                 <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
 
-                <Stack.Screen name="Hub Navigator" component={HubNavigator} />
+                <Stack.Screen name="Hub Navigator" component={HubNavigator} options={{ gestureEnabled: false }} />
                 <Stack.Screen name="Find Help" component={FindHelp} />
                 <Stack.Screen name="Entry List" component={JournalEntryList} />
                 <Stack.Screen name="New Entry" component={JournalEntry} />
@@ -44,7 +44,7 @@ export default function App() {
                 <Stack.Screen name="Update Email" component={UpdateEmailScreen} />
 
                 <Stack.Screen name="Exercise Details" component={ExerciseDetails} />
-                
+
                 <Stack.Screen name="Manage Exercises" component={ShowExercises} />
                 <Stack.Screen name="Add Exercise" component={AddExercise} />
                 <Stack.Screen name="Modify Exercise" component={ModifyExercise} />

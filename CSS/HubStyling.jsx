@@ -51,7 +51,9 @@ export default StyleSheet.create({
     },
     submitOpac: {
         backgroundColor: "#70B533",
-        borderRadius: 5,
+        borderColor: "#421018",
+        borderWidth: 2,
+        borderRadius: 50,
         marginTop: 10,
         marginBottom: 20,
         paddingLeft: 30,
@@ -109,6 +111,10 @@ export default StyleSheet.create({
         margin: 5,
         padding: 10,
         color: "#421018",
+    },
+
+    EntryIcons: {
+        flexDirection: "row",
     },
     entryDate: {
         marginBottom: 10,
@@ -196,7 +202,7 @@ export default StyleSheet.create({
     },
 
     exerciseDeleteOpac: {
-        backgroundColor: "#ff0000",
+        backgroundColor: "#C70039",
         borderRadius: 50,
         marginTop: 10,
         marginBottom: 20,
@@ -230,9 +236,9 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start', // Align items to the start of the container
         marginBottom: 10, // Add some margin between steps
-      },
-      stepText: {
+    },
+    stepText: {
         marginRight: 5, // Add some space between step number and text
-      },
+    },
 
 });
