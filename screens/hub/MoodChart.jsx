@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, SafeAreaView } from 'react-native';
 import { FAB } from 'react-native-paper';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { useFocusEffect } from '@react-navigation/native';
@@ -10,14 +10,14 @@ import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling';
 
 // Function to generate a random hex color
-const getRandomHexColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-};
+// const getRandomHexColor = () => {
+//     const letters = '0123456789ABCDEF';
+//     let color = '#';
+//     for (let i = 0; i < 6; i++) {
+//         color += letters[Math.floor(Math.random() * 16)];
+//     }
+//     return color;
+// };
 
 export default function MoodChart({ navigation }) {
     const [moodsTally, setMoodsTally] = useState([1]);
@@ -70,11 +70,6 @@ export default function MoodChart({ navigation }) {
             while (colors.length > sortedList.length) {
                 colors.pop();
             }
-
-            console.log(sum);
-            console.log(sortedTally);
-            console.log(sortedList);
-            console.log(colors);
 
             setMoodColors(colors);
             setMoodsTally(sortedTally);

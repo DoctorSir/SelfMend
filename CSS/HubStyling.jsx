@@ -216,8 +216,7 @@ export default StyleSheet.create({
     legendContainer: {
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 50,
+        marginTop: "10%",
     },
     legendItem: {
         flexDirection: 'row',
