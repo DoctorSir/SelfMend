@@ -78,7 +78,7 @@ export default function EntryList({ navigation }) {
 
                             <View style={Hub.EntryIcons}>
                                 <TouchableOpacity onPress={() => handleEditEntry(item.id)} >
-                                    <Icon name="edit" size={24} color="#421018" style={{paddingRight: "3%"}} />
+                                    <Icon name="edit" size={24} color="#421018" style={{ paddingRight: "3%" }} />
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => handleDeleteEntry(item.id)}>
                                     <Icon name="delete" size={24} color="#C70039" />

@@ -23,12 +23,15 @@ export default function MoodChart({ navigation }) {
     const [moodsTally, setMoodsTally] = useState([1]);
     const [moodsList, setMoodsList] = useState([]);
     const [moodColors, setMoodColors] = useState(['#000']);
+    const [display, setDisplay] = useState(0);
 
     const fetchMoods = async () => {
         const moodQuery = query(
             collection(db, 'JournalEntries'),
             where('uid', '==', auth.currentUser.uid)
         );
+
+        setDisplay(0);
 
         try {
             const querySnapshot = await getDocs(moodQuery);
@@ -64,16 +67,24 @@ export default function MoodChart({ navigation }) {
             }
 
             // Add "Other" category to the sorted list and tally
-            sortedList.push("Other");
-            sortedTally.push(sum);
+            if (sum > 0) {
+                sortedList.push("Other");
+                sortedTally.push(sum);
+            }
 
             while (colors.length > sortedList.length) {
                 colors.pop();
             }
 
-            setMoodColors(colors);
+            console.log(sortedTally);
+            console.log(colors);
+            console.log(sortedList);
+
             setMoodsTally(sortedTally);
+            setMoodColors(colors);
             setMoodsList(sortedList);
+
+            setDisplay(1);
 
         } catch (error) {
             console.error('Error fetching entries:', error);
@@ -90,7 +101,7 @@ export default function MoodChart({ navigation }) {
         <SafeAreaView style={Theme.staticContainer}>
             <Text style={Hub.titleText}>Mood Chart</Text>
 
-            {moodsList.length !== 0 && (
+            {display !== 0 && (
                 <>
                     <PieChart
                         widthAndHeight={300}
