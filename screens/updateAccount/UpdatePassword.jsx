@@ -73,7 +73,7 @@ export default function ChangePasswordScreen({ navigation }) {
             />
 
             <TouchableOpacity onPress={(handleChangePassword)} style={Auth.loginOpac}>
-                <Text style={Auth.actionButtonText}>Change Password</Text>
+                <Text style={Auth.actionButtonText}>Change</Text>
             </TouchableOpacity>
 
             <Text style={Theme.errorText}>{error}</Text>
