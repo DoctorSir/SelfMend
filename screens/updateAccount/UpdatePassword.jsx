@@ -25,7 +25,7 @@ export default function ChangePasswordScreen({ navigation }) {
                 })
             });
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
 
     };

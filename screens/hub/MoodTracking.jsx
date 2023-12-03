@@ -15,13 +15,11 @@ const writeJournalEntryToFirebase = async (journalMood) => {
 
     try {
         // Add a new document in collection "JournalEntries"
-        const docRef = await addDoc(collection(db, "JournalEntries"), {
+        await addDoc(collection(db, "JournalEntries"), {
             Date: getCurrentDateAndTime(),
             Mood: journalMood,
             uid: user.uid,
         });
-
-        console.log(journalMood);
     } catch (error) {
         console.error('Error saving entry:', error);
         throw error;

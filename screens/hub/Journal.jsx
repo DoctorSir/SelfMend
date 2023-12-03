@@ -32,10 +32,6 @@ export default function JournalEntryPage({ navigation }) {
     const [journalText, setJournalText] = useState("");
     const [journalMood, setJournalMood] = useState("");
 
-    useEffect(() => {
-        console.log(getCurrentDateAndTime());
-    }, []);
-
     const saveEntry = () => {
 
         const writeJournalEntryToFirebase = async (journalText, journalMood) => {
@@ -44,7 +40,7 @@ export default function JournalEntryPage({ navigation }) {
 
             try {
                 // Add a new document in collection "JournalEntries"
-                const docRef = await addDoc(collection(db, "JournalEntries"), {
+                await addDoc(collection(db, "JournalEntries"), {
                     Date: getCurrentDateAndTime(),
                     Text: journalText,
                     Mood: journalMood,

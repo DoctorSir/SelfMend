@@ -21,7 +21,7 @@ export default function ChangePasswordScreen({ navigation }) {
             await signOut(auth).then(() => {
                 navigation.navigate("Login")
             }).catch((error) => {
-                console.log(error)
+                console.error(error)
             })
         } catch (error) {
             setError("Unable to send verification email")

@@ -6,8 +6,6 @@ import { auth } from '../../services/firebaseConfig';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import KeyboardAvoidingComponent from '../../components/KeboardAvoidingComponent';
 
-import BackButton from '../../navigation/BackButton';
-
 import Logo from '../../components/Logo';
 import Theme from '../../CSS/AppTheme';
 import Auth from '../../CSS/AuthStyling';
@@ -63,13 +61,13 @@ export default function SignupScreen({ navigation }) {
 
                 await createUserWithEmailAndPassword(auth, email, password)
                 await updateProfile(auth.currentUser, { displayName: `${firstName} ${lastName}` }).catch(
-                    (err) => console.log(err)
+                    (err) => console.error(err)
                 );
 
                 setError('')
                 navigation.navigate('Login');
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 setError('Account Creation failed! Please try again');
             } finally {
                 auth.currentUser.reload()

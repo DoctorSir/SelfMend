@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { SafeAreaView, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, TouchableOpacity } from "react-native";
 import { Text, TextInput } from "react-native-paper";
-import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 import { auth } from "../../services/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import * as Animatable from "react-native-animatable";
@@ -12,7 +11,6 @@ import Logo from "../../components/Logo";
 import Theme from "../../CSS/AppTheme";
 import Auth from "../../CSS/AuthStyling";
 import AuthStyling from "../../CSS/AuthStyling";
-import AppTheme from "../../CSS/AppTheme";
 
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState("");
@@ -20,25 +18,10 @@ export default function LoginScreen({ navigation }) {
     const [error, setError] = useState("");
     const [shakeKey, setShakeKey] = useState(0); // Add shakeKey state
 
-    useEffect(() => {
-        // Load the last used email from AsyncStorage
-        const loadLastUsedEmail = async () => {
-            try {
-                const storedEmail = await AsyncStorage.getItem("lastUsedEmail");
-                if (storedEmail) {
-                    setEmail(storedEmail);
-                }
-            } catch (error) {
-                console.error("Error loading last used email", error);
-            }
-        };
-
-        loadLastUsedEmail();
-    }, []); // Run this effect only once on component mount
 
     const handleLogin = async () => {
         try {
-            const response = await signInWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password);
             setError("");
             setEmail("");
             setPassword("");
@@ -63,15 +46,6 @@ export default function LoginScreen({ navigation }) {
 
     const handlePasswordChange = (text) => {
         setPassword(text);
-    };
-
-    const handleRememberEmail = async () => {
-        // Save the email to AsyncStorage
-        try {
-            await AsyncStorage.setItem("lastUsedEmail", email);
-        } catch (error) {
-            console.error("Error saving last used email", error);
-        }
     };
 
     return (
@@ -99,11 +73,6 @@ export default function LoginScreen({ navigation }) {
                         value={password}
                         mode="flat"
                         activeUnderlineColor="#5194b8"
-                        onSubmitEditing={() => {
-                            handleRememberEmail();
-                            handleLogin();
-                        }}
-                        returnKeyType="go"
                     />
 
                     <Animatable.View animation="shake" key={shakeKey} ref={errorTextRef}>

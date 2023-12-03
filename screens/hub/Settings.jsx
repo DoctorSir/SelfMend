@@ -67,7 +67,7 @@ export default function SettingsScreen({ navigation }) {
             Alert.alert("Account Successfully Deleted");
 
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     };
 

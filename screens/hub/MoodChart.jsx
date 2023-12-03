@@ -76,10 +76,6 @@ export default function MoodChart({ navigation }) {
                 colors.pop();
             }
 
-            console.log(sortedTally);
-            console.log(colors);
-            console.log(sortedList);
-
             setMoodsTally(sortedTally);
             setMoodColors(colors);
             setMoodsList(sortedList);
