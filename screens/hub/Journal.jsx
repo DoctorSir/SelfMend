@@ -165,7 +165,7 @@ export default function JournalEntryPage({ navigation }) {
 
                 {journalText && selectedItem && (
                     <TouchableOpacity style={Hub.submitOpac} onPress={saveEntry} placeholder="Submit">
-                        <Text style={Hub.actionButtonText}>Save Entry</Text>
+                        <Text style={Hub.actionButtonText}>Save</Text>
                     </TouchableOpacity>
                 )}
 

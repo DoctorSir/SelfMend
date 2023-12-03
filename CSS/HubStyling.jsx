@@ -125,7 +125,6 @@ export default StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: "#421018",
-        textAlign: "center"
     },
     entryMood: {
         textAlign: 'right'
