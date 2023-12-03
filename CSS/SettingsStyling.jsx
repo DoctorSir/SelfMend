@@ -25,7 +25,6 @@ export default StyleSheet.create({
         paddingVertical: 8,
     },
     accountTitle: {
-        marginTop: "20",
         fontSize: 24,
         fontWeight: "bold",
         color: "#421018",

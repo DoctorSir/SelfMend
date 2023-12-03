@@ -139,7 +139,7 @@ export default StyleSheet.create({
         right: 10,
         bottom: 10,
         backgroundColor: '#421018',
-        borderRadius: '50%',
+        borderRadius: 50,
     },
     exerciseContainer: {
         backgroundColor: '#FCF6EE',
