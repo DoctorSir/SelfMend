@@ -6,7 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import * as Animatable from "react-native-animatable";
 import { Vibration } from "react-native";
 import KeyboardAvoidingComponent from "../../components/KeboardAvoidingComponent";
-import AsyncStorage from "@react-native-async-storage/async-storage"; 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Logo from "../../components/Logo";
 import Theme from "../../CSS/AppTheme";
@@ -70,7 +70,7 @@ export default function LoginScreen({ navigation }) {
                 console.error("Error loading last used email", error);
             }
         };
-        loadLastUsedEmail();
+        // loadLastUsedEmail();
     });
 
     return (
@@ -86,9 +86,9 @@ export default function LoginScreen({ navigation }) {
                     value={email}
                     mode="flat"
                     activeUnderlineColor="#5194b8"
-                    onSubmitEditing={() => {
-                        handleRememberEmail();
-                    }}
+                // onSubmitEditing={() => {
+                //     handleRememberEmail();
+                // }}
                 />
 
                 <TextInput
