@@ -19,6 +19,7 @@ Logo.propTypes = {
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
+// Set default dimensions if none are passed
 Logo.defaultProps = {
     logoWidth: 100,
     logoHeight: 100,

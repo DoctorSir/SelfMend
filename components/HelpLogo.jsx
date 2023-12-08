@@ -2,7 +2,7 @@ import React from 'react'
 import { Image } from 'react-native'
 import logo from '../assets/MentalHealth.png'
 
-// import image from assets folder and define the size
+// import image from assets folder and define the size for help logo
 export default function Logo() {
     return (
         <Image source={logo}

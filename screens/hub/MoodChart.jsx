@@ -9,22 +9,14 @@ import { auth, db } from '../../services/firebaseConfig';
 import Theme from '../../CSS/AppTheme';
 import Hub from '../../CSS/HubStyling';
 
-// Function to generate a random hex color
-// const getRandomHexColor = () => {
-//     const letters = '0123456789ABCDEF';
-//     let color = '#';
-//     for (let i = 0; i < 6; i++) {
-//         color += letters[Math.floor(Math.random() * 16)];
-//     }
-//     return color;
-// };
-
 export default function MoodChart({ navigation }) {
+    // State variables for managing data
     const [moodsTally, setMoodsTally] = useState([1]);
     const [moodsList, setMoodsList] = useState([]);
     const [moodColors, setMoodColors] = useState(['#000']);
     const [display, setDisplay] = useState(0);
 
+    // Function to fetch mood data from Firebase
     const fetchMoods = async () => {
         const moodQuery = query(
             collection(db, 'JournalEntries'),
@@ -36,10 +28,12 @@ export default function MoodChart({ navigation }) {
         try {
             const querySnapshot = await getDocs(moodQuery);
 
+            // Arrays to store mood data
             const tally = [];
             const list = [];
             const colors = ['#002441', '#003f5e', '#045b7d', '#30789b', '#5295b9', '#72b3d9', '#92d3f9', '#b5f5ff'];
 
+            // Iterate over query snapshot to count occurrences of each mood
             querySnapshot.forEach((doc) => {
                 const mood = doc.data().Mood;
 
@@ -72,10 +66,12 @@ export default function MoodChart({ navigation }) {
                 sortedTally.push(sum);
             }
 
+            // Ensure colors array length matches the number of moods
             while (colors.length > sortedList.length) {
                 colors.pop();
             }
 
+            // Update state with sorted data
             setMoodsTally(sortedTally);
             setMoodColors(colors);
             setMoodsList(sortedList);
@@ -87,6 +83,7 @@ export default function MoodChart({ navigation }) {
         }
     };
 
+    // Use the useFocusEffect hook to fetch mood data when the component is focused
     useFocusEffect(
         React.useCallback(() => {
             fetchMoods();
@@ -99,6 +96,7 @@ export default function MoodChart({ navigation }) {
 
             {display !== 0 && (
                 <>
+                    {/* Display PieChart component with mood data */}
                     <PieChart
                         widthAndHeight={300}
                         series={moodsTally}
@@ -106,6 +104,7 @@ export default function MoodChart({ navigation }) {
                         coverRadius={0.45}
                         coverFill={'#FCF6EE'}
                     />
+                    {/* Display legend with colored boxes representing each mood */}
                     <View style={Hub.legendContainer}>
                         {moodsList.map((mood, index) => (
                             <View style={Hub.legendItem} key={index}>
@@ -117,6 +116,7 @@ export default function MoodChart({ navigation }) {
                 </>
             )}
 
+            {/* Floating Action Button for navigating to the 'New Mood' screen */}
             <FAB
                 style={Hub.fab}
                 icon="plus"

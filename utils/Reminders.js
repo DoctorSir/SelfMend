@@ -1,3 +1,4 @@
+// Define an array of reminders, each containing an id and text
 const reminders = [
     { id: 1, text: 'Remember to take deep breaths today.' },
     { id: 2, text: 'Practice gratitude for at least 3 things.' },
@@ -101,6 +102,7 @@ const reminders = [
     { id: 100, text: 'Reflect on your accomplishments and celebrate them.' }
 ];
 
+// Define a function to get a random reminder from the array
 export const getRandomReminder = () => {
     const index = Math.floor(Math.random() * reminders.length);
     return reminders[index];

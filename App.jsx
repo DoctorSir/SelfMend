@@ -1,9 +1,10 @@
+// Import necessary dependencies and components from React and React Native
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 
-// imports for custom screens
+// Import custom screens and components
 import LoginScreen from './screens/auth/Login';
 import CreateAccountScreen from './screens/auth/Signup'
 import ForgotPasswordScreen from './screens/auth/ForgotPassword';
@@ -15,25 +16,27 @@ import JournalEntry from './screens/hub/Journal';
 import JournalEntryList from "./screens/hub/ListJournals";
 import EditJournal from "./screens/hub/EditJournal";
 import ExerciseDetails from './screens/hub/ExerciseDetails';
-
 import MoodTracking from './screens/hub/MoodTracking';
 import ShowExercises from "./screens/hub/ExerciseManagement/ShowExercises"
 import AddExercise from './screens/hub/ExerciseManagement/AddExercise';
 import ModifyExercise from "./screens/hub/ExerciseManagement/ModifyExercise";
 import BackButton from './navigation/BackButton';
 
-// create new stack navigator to go between screens
+// Create a new stack navigator to navigate between screens
 const Stack = createStackNavigator();
 
+// Define the main App component
 export default function App() {
-
+    // Define header background color
     const headerBackgroundColor = '#FCF6EE'
 
+    // Render the main app structure with navigation
     return (
         <NavigationContainer>
             <StatusBar style="auto" />
-            <Stack.Navigator initalRouteName="Login" screenOptions={{ headerShown: false }}>
-
+            {/* Stack Navigator to manage screen transitions */}
+            <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+                {/* Define screens and their configurations */}
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Create Account"
                     component={CreateAccountScreen}

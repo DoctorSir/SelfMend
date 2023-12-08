@@ -1,3 +1,4 @@
+// Define categories array containing mood categories
 export const categories = [
     { label: 'Happy', value: 'Happy' },
     { label: 'Sad', value: 'Sad' },
@@ -8,6 +9,7 @@ export const categories = [
     { label: 'Bad', value: 'Bad' },
 ];
 
+// Define subcategories object containing mood subcategories for each category
 export const subcategories = {
     Happy: [
         { label: 'Playful', value: 'Playful' },
@@ -66,6 +68,7 @@ export const subcategories = {
     ]
 };
 
+// Define items object containing mood items for each subcategory
 export const items = {
     Playful: [
         { label: 'Aroused', value: 'Aroused' },

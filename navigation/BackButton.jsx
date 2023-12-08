@@ -4,6 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import AppTheme from "../CSS/AppTheme";
 
+
+// Creates pressable app navigator to go back a screen where needed
 export default function BackButton() {
     const navigation = useNavigation();
 

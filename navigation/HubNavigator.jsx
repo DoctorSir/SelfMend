@@ -1,3 +1,4 @@
+// Import necessary modules from React Navigation and Expo vector icons
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -5,17 +6,21 @@ import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import ExerciseScreen from '../screens/hub/Exercise'
-import LandingScreen from '../screens/hub/Landing'
-import MoodScreen from '../screens/hub/MoodChart'
-import SettingsScreen from '../screens/hub/Settings'
-import JournalScreen from '../screens/hub/ListJournals'
+// Import screens for each tab
+import ExerciseScreen from '../screens/hub/Exercise';
+import LandingScreen from '../screens/hub/Landing';
+import MoodScreen from '../screens/hub/MoodChart';
+import SettingsScreen from '../screens/hub/Settings';
+import JournalScreen from '../screens/hub/ListJournals';
 
+// Create a BottomTabNavigator
 const Tab = createBottomTabNavigator();
 
+// Functional component for the HubNavigator
 export default function HubNavigator() {
     return (
-        <Tab.Navigator initialRouteName="Home" >
+        <Tab.Navigator initialRouteName="Home">
+            {/* Tab for the Home (Landing) screen */}
             <Tab.Screen
                 name="Home"
                 component={LandingScreen}
@@ -29,6 +34,7 @@ export default function HubNavigator() {
                 }}
             />
 
+            {/* Tab for the Journal screen */}
             <Tab.Screen
                 name="Journal"
                 component={JournalScreen}
@@ -42,6 +48,7 @@ export default function HubNavigator() {
                 }}
             />
 
+            {/* Tab for the Exercise screen */}
             <Tab.Screen
                 name="Exercise"
                 component={ExerciseScreen}
@@ -55,6 +62,7 @@ export default function HubNavigator() {
                 }}
             />
 
+            {/* Tab for the Mood screen */}
             <Tab.Screen
                 name="Mood"
                 component={MoodScreen}
@@ -67,6 +75,8 @@ export default function HubNavigator() {
                     )
                 }}
             />
+
+            {/* Tab for the Settings screen */}
             <Tab.Screen
                 name="Settings"
                 component={SettingsScreen}
@@ -79,7 +89,6 @@ export default function HubNavigator() {
                     )
                 }}
             />
-
         </Tab.Navigator>
     )
 }
